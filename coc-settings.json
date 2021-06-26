@@ -1,5 +1,6 @@
 {
 	"coc.preferences.formatOnSaveFiletypes": [
+		"java",
 		"css",
 		"markdown",
 		"javascript",
@@ -7,8 +8,7 @@
 		"html",
 		"yaml",
 		"json",
-		"python",
-		"java"
+		"python"
 	],
 	// python config
 	"python.linting.enabled": true,
@@ -18,8 +18,6 @@
 		"~/.config/nvim/utils/snips"
 	],
 	"codeLens.enable": true,
-	"java.referencesCodeLens.enabled": true,
-	"java.jdt.ls.vmargs": "-javaagent:/usr/local/share/lombok/lombok.jar",
 	"suggest.triggerAfterInsertEnter": true,
 	"suggest.noselect": false,
 	"suggest.minTriggerInputLength": 2,
@@ -54,11 +52,14 @@
 	"coc.preferences.formatOnSaveFiletypes": [
 		"*"
 	],
+	"java.jdt.ls.vmargs": "-javaagent:/usr/local/share/lombok/lombok-1.18.4.jar",
+	"java.trace.server": "verbose",
 	"coc.preferences.snippets.enable": true,
 	"diagnostic.messageTarget": "float",
 	"suggest.floatEnable": true,
 	"signature.target": "preview",
 	"coc.preferences.hoverTarget": "echo",
+	"java.referencesCodeLens.enabled": true,
 	"java.home": "/opt/jdk",
 	"java.import.gradle.enabled": true,
 	"java.import.gradle.wrapper.enabled": true

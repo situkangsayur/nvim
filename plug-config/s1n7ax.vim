@@ -8,6 +8,8 @@ let mapleader = ","
 nmap <C-p> :Buffer<CR>
 call plug#begin('~/.vim/plugged')
 
+Plug 'nvim-treesitter/nvim-treesitter'
+
 
 "------------------------------------------------------------------------------"
 "                                   nvim yarp                                  "
@@ -19,7 +21,8 @@ Plug 'roxma/nvim-yarp'
 "                                   coc nvim                                   "
 "------------------------------------------------------------------------------"
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" luafile config/coc-extensions.lua
+" lua file config/coc-extensions.lua 
+" Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 
 
 " adds the status line when something is being processed in the background
@@ -74,7 +77,7 @@ function! s:show_documentation()
 endfunction
 
 " Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
+" autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
@@ -82,6 +85,7 @@ nmap <leader>rn <Plug>(coc-rename)
 " Remap for format selected region
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
+
 
 augroup mygroup
   autocmd!
@@ -216,7 +220,7 @@ let g:airline#extensions#wordcount#enabled = 0
 "------------------------------------------------------------------------------"
 "                                 vim surround                                 "
 "------------------------------------------------------------------------------"
-Plug 'tpope/vim-surround'
+" Plug 'tpope/vim-surround'
 
 
 
