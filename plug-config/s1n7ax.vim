@@ -1,32 +1,31 @@
-set nornu
 set shell=/bin/sh
-let mapleader = ","
+" let mapleader = ","
 
 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 "                                VIM PLUG START                                "
 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 nmap <C-p> :Buffer<CR>
-call plug#begin('~/.vim/plugged')
+" call plug#begin('~/.vim/plugged')
 
-Plug 'nvim-treesitter/nvim-treesitter'
+" Plug 'nvim-treesitter/nvim-treesitter'
 
 
 "------------------------------------------------------------------------------"
 "                                   nvim yarp                                  "
 "------------------------------------------------------------------------------"
-Plug 'roxma/nvim-yarp'
+" Plug 'roxma/nvim-yarp'
 
 
 "------------------------------------------------------------------------------"
 "                                   coc nvim                                   "
 "------------------------------------------------------------------------------"
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " lua file config/coc-extensions.lua 
 " Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 
 
 " adds the status line when something is being processed in the background
-let g:airline#extensions#coc#enabled = 1
+" let g:airline#extensions#coc#enabled = 1
 
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
@@ -159,7 +158,7 @@ let g:coc_snippet_next = '<tab>'
 "------------------------------------------------------------------------------"
 "                                vim javascript                                "
 "------------------------------------------------------------------------------"
-Plug 'pangloss/vim-javascript'
+" Plug 'pangloss/vim-javascript'
 
 
 "------------------------------------------------------------------------------"
@@ -171,14 +170,14 @@ Plug 'ianks/vim-tsx'
 "------------------------------------------------------------------------------"
 "                                typescript vim                                "
 "------------------------------------------------------------------------------"
-Plug 'leafgarland/typescript-vim'
+" Plug 'leafgarland/typescript-vim'
 
 
 "------------------------------------------------------------------------------"
 "                                      fzf                                     "
 "------------------------------------------------------------------------------"
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+" Plug 'junegunn/fzf.vim'
 " ignore files and folders in git ignore
 command! FZFGitIgnore call fzf#run(fzf#wrap({'source': 'git ls-files --exclude-standard --others --cached'}))
 nmap <C-p> :FZFGitIgnore <CR>
@@ -193,29 +192,28 @@ nmap <Leader>fzc <Esc>:Commits<CR>
 "------------------------------------------------------------------------------"
 "                                  vim ariline                                 "
 "------------------------------------------------------------------------------"
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-let g:airline#extensions#tabline#enabled = 0
-let g:airline_statusline_ontop=1
-let g:airline_detect_modified=1
-let g:airline_theme = 'bubblegum'
-let g:airline_powerline_fonts = 1
-let g:airline_disable_statusline = 0
-
-" powerline symbols
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-
-let g:airline#extensions#coc#enabled = 1
-let airline#extensions#coc#error_symbol = 'E:'
-let airline#extensions#coc#warning_symbol = 'W:'
-let airline#extensions#coc#stl_format_err = '%E{[%e(#%fe)]}'
-let airline#extensions#coc#stl_format_warn = '%W{[%w(#%fw)]}'
-
-let g:airline#extensions#wordcount#enabled = 0
-
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
+" let g:airline#extensions#tabline#enabled = 0
+" let g:airline_statusline_ontop=1
+" let g:airline_detect_modified=1
+" let g:airline_theme = 'bubblegum'
+" let g:airline_powerline_fonts = 1
+" let g:airline_disable_statusline = 0
+" 
+" " powerline symbols
+" let g:airline_left_sep = ''
+" let g:airline_left_alt_sep = ''
+" let g:airline_right_sep = ''
+" let g:airline_right_alt_sep = ''
+" 
+" let g:airline#extensions#coc#enabled = 1
+" let airline#extensions#coc#error_symbol = 'E:'
+" let airline#extensions#coc#warning_symbol = 'W:'
+" let airline#extensions#coc#stl_format_err = '%E{[%e(#%fe)]}'
+" let airline#extensions#coc#stl_format_warn = '%W{[%w(#%fw)]}'
+" 
+" let g:airline#extensions#wordcount#enabled = 0
 
 "------------------------------------------------------------------------------"
 "                                 vim surround                                 "
@@ -227,14 +225,14 @@ let g:airline#extensions#wordcount#enabled = 0
 "------------------------------------------------------------------------------"
 "                             vim multiple cursors                             "
 "------------------------------------------------------------------------------"
-Plug 'terryma/vim-multiple-cursors'
+" Plug 'terryma/vim-multiple-cursors'
 
 
 
 "------------------------------------------------------------------------------"
 "                                   emmet vim                                  "
 "------------------------------------------------------------------------------"
-Plug 'mattn/emmet-vim'
+" Plug 'mattn/emmet-vim'
 
 
 "------------------------------------------------------------------------------"
@@ -247,13 +245,13 @@ Plug 'mattn/emmet-vim'
 "------------------------------------------------------------------------------"
 "                                  delimitMate                                 "
 "------------------------------------------------------------------------------"
-Plug 'Raimondi/delimitMate'
+" Plug 'Raimondi/delimitMate'
 
 
 "------------------------------------------------------------------------------"
 "                                nerd commenter                                "
 "------------------------------------------------------------------------------"
-Plug 'scrooloose/nerdcommenter'
+" Plug 'scrooloose/nerdcommenter'
 let g:NERDSpaceDelims = 1
 let g:NERDCompactSexyComs = 1
 let g:NERDDefaultAlign = 'left'
@@ -267,13 +265,13 @@ let g:NERDToggleCheckAllLines = 1
 "------------------------------------------------------------------------------"
 "                                 comment frame                                "
 "------------------------------------------------------------------------------"
-Plug 'cometsong/CommentFrame.vim'
+" Plug 'cometsong/CommentFrame.vim'
 
 
 "------------------------------------------------------------------------------"
 "                                   nerd tree                                  "
 "------------------------------------------------------------------------------"
-Plug 'scrooloose/nerdtree'
+" Plug 'scrooloose/nerdtree'
 let NERDTreeMapOpenInTab='<Leader>ntt'
 nnoremap <Leader>nt :NERDTree<CR>
 nnoremap <Leader>ntf :NERDTreeFocus<CR>
@@ -287,14 +285,14 @@ au VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 "------------------------------------------------------------------------------"
 "                                   vim viki                                   "
 "------------------------------------------------------------------------------"
-Plug 'vimwiki/vimwiki'
+" Plug 'vimwiki/vimwiki'
 let g:vimwiki_list = [{'path': '~/workspace/wiki',  'syntax': 'markdown', 'ext': '.md'}]
 
 
 "------------------------------------------------------------------------------"
 "                                   auto save                                  "
 "------------------------------------------------------------------------------"
-Plug '907th/vim-auto-save'
+" Plug '907th/vim-auto-save'
 let g:auto_save = 0
 let g:auto_save_events = ["InsertLeave", "TextChanged"]
 
@@ -302,13 +300,13 @@ let g:auto_save_events = ["InsertLeave", "TextChanged"]
 "------------------------------------------------------------------------------"
 "                                    scalpel                                   "
 "------------------------------------------------------------------------------"
-Plug 'wincent/scalpel'
+" Plug 'wincent/scalpel'
 
 
 "------------------------------------------------------------------------------"
 "                                  auto pairs                                  "
 "------------------------------------------------------------------------------"
-Plug 'jiangmiao/auto-pairs'
+" Plug 'jiangmiao/auto-pairs'
 
 
 "------------------------------------------------------------------------------"
@@ -320,35 +318,35 @@ Plug 'jiangmiao/auto-pairs'
 "------------------------------------------------------------------------------"
 "                                 smooth scroll                                "
 "------------------------------------------------------------------------------"
-Plug 'psliwka/vim-smoothie'
+" Plug 'psliwka/vim-smoothie'
 
 
 "------------------------------------------------------------------------------"
 "                                   dev icons                                  "
 "------------------------------------------------------------------------------"
-Plug 'ryanoasis/vim-devicons'
+" Plug 'ryanoasis/vim-devicons'
 
 
 "------------------------------------------------------------------------------"
 "                                  quick scope                                 "
 "------------------------------------------------------------------------------"
-Plug 'unblevable/quick-scope'
+" Plug 'unblevable/quick-scope'
 
 
 "------------------------------------------------------------------------------"
 "                                    themes                                    "
 "------------------------------------------------------------------------------"
-Plug 'xolox/vim-misc'
-Plug 'xolox/vim-colorscheme-switcher'
+" Plug 'xolox/vim-misc'
+" Plug 'xolox/vim-colorscheme-switcher'
 let g:colorscheme_switcher_define_mappings=0
 nnoremap <F8> :NextColorScheme<Cr>
 nnoremap <F7> :PrevColorScheme<Cr>
 let g:colorscheme_switcher_keep_background=1
 
-Plug 'rafi/awesome-vim-colorschemes'
-Plug 'tomasiser/vim-code-dark'
+" Plug 'rafi/awesome-vim-colorschemes'
+" Plug 'tomasiser/vim-code-dark'
 
-call plug#end()
+" call plug#end()
 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 "                                 VIM PLUG END                                 "
 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
@@ -395,9 +393,9 @@ set spelllang=en
 set shiftwidth=4
 set tabstop=4
 
-set incsearch
-set ignorecase
-set smartcase 
+" set incsearch
+" set ignorecase
+" set smartcase 
 
 set formatoptions-=ro
 
@@ -409,7 +407,7 @@ set splitright
 set scrolloff=10
 
 " turn off status line
-set laststatus=0
+" set laststatus=0
 
 " clipboard copy and paste
 set clipboard=unnamedplus
