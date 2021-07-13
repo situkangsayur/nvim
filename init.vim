@@ -146,6 +146,8 @@ Plug 'romgrk/barbar.nvim'
 Plug 'romgrk/doom-one.vim'
 " Plug 'ryanoasis/vim-devicons'
 Plug 'mhinz/vim-signify'
+
+Plug 'preservim/tagbar'
 call plug#end()
 
 " this is important for dev icons to work
