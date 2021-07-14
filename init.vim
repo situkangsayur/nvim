@@ -148,6 +148,7 @@ Plug 'romgrk/doom-one.vim'
 Plug 'mhinz/vim-signify'
 
 Plug 'preservim/tagbar'
+Plug 'davidhalter/jedi-vim'
 call plug#end()
 
 " this is important for dev icons to work
@@ -163,6 +164,8 @@ source /home/hendri/.config/nvim/plug-config/s1n7ax.vim
 source /home/hendri/.config/nvim/plug-config/barbar.vim 
 
 source /home/hendri/.config/nvim/plug-config/coc.vim 
+
+source /home/hendri/.config/nvim/plug-config/tagbar.vim
 
 lua require'nvim-treesitter.configs'.setup { ensure_installed = "maintained", highlight = { enable = true, }, }
 
