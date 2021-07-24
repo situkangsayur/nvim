@@ -158,6 +158,7 @@ Plug 'phpactor/phpactor', {'for': 'php', 'do': 'composer install --no-dev -o'}
 
 " to add tagbar togle
 Plug 'preservim/tagbar'
+Plug 'davidhalter/jedi-vim'
 call plug#end()
 
 " this is important for dev icons to work
