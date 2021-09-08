@@ -142,6 +142,7 @@ Plug 'mfussenegger/nvim-dap'
 "                                   dev icons                                  "
 "------------------------------------------------------------------------------"
 Plug 'kyazdani42/nvim-web-devicons'
+Plug 'kyazdani42/nvim-tree.lua'
 Plug 'romgrk/barbar.nvim'
 Plug 'romgrk/doom-one.vim'
 " Plug 'ryanoasis/vim-devicons'
