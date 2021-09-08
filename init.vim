@@ -20,6 +20,7 @@ Plug 'leafgarland/typescript-vim'
 "------------------------------------------------------------------------------"
 "                                      fzf                                     "
 "------------------------------------------------------------------------------"
+" need to install the silver search in ubuntu : silversearcher-ag
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 "------------------------------------------------------------------------------"
@@ -148,6 +149,15 @@ Plug 'romgrk/doom-one.vim'
 " Plug 'ryanoasis/vim-devicons'
 Plug 'mhinz/vim-signify'
 
+"------------------------------------------------------------------------------"
+"                                   php specific plugin                                  "
+"------------------------------------------------------------------------------"
+Plug 'StanAngeloff/php.vim', { 'for': 'php' }
+Plug 'stephpy/vim-php-cs-fixer', { 'for': 'php' }
+Plug 'jwalton512/vim-blade'
+Plug 'phpactor/phpactor', {'for': 'php', 'do': 'composer install --no-dev -o'}
+
+" to add tagbar togle
 Plug 'preservim/tagbar'
 Plug 'davidhalter/jedi-vim'
 call plug#end()
@@ -171,3 +181,5 @@ source /home/hendri/.config/nvim/plug-config/tagbar.vim
 lua require'nvim-treesitter.configs'.setup { ensure_installed = "maintained", highlight = { enable = true, }, }
 
 set nornu
+
+source /home/hendri/.config/nvim/plug-config/php.vim
