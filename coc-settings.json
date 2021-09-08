@@ -5,8 +5,7 @@
 		  "rootPatterns": ["go.mod"],
 		  "trace.server": "verbose",
 		  "filetypes": ["go"]
-		}
-	  },
+		}	  },
 	"coc.preferences.formatOnSaveFiletypes": [
 		"java",
 		"css",
