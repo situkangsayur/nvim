@@ -5,7 +5,14 @@
 		  "rootPatterns": ["go.mod"],
 		  "trace.server": "verbose",
 		  "filetypes": ["go"]
-		}	  },
+		},
+		"kotlinLanguageServer": {
+            "command": "/home/hendri/language-server/kotlin-language-server/server/build/install/server/bin/kotlin-language-server",
+            "filetypes": ["kotlin"],
+            "rootPatterns": [".kt",".kts"],
+            "additionalSchemes": ["jar", "zipfile"]
+        }  
+	},
 	"coc.preferences.formatOnSaveFiletypes": [
 		"java",
 		"css",
@@ -61,7 +68,7 @@
 	],
 	"java.format.settings.url" : "/home/hendri/.config/nvim/blibli_profile_code_formatter_updated.xml",
 	"java.jdt.ls.vmargs": "-javaagent:/usr/local/share/lombok/lombok-1.18.4.jar",
-	"java.jdt.ls.home":"/home/hendri/apps/jdt-language-server",
+	"java.jdt.ls.home":"/home/hendri/language-server/jdt-language-server",
 	"java.trace.server": "verbose",
 	"coc.preferences.snippets.enable": true,
 	"diagnostic.messageTarget": "float",
