@@ -59,7 +59,9 @@
 	"coc.preferences.formatOnSaveFiletypes": [
 		"*"
 	],
+	"java.format.settings.url" : "/home/hendri/.config/nvim/blibli_profile_code_formatter_updated.xml",
 	"java.jdt.ls.vmargs": "-javaagent:/usr/local/share/lombok/lombok-1.18.4.jar",
+	"java.jdt.ls.home":"/home/hendri/apps/jdt-language-server",
 	"java.trace.server": "verbose",
 	"coc.preferences.snippets.enable": true,
 	"diagnostic.messageTarget": "float",
@@ -67,7 +69,6 @@
 	"signature.target": "preview",
 	"coc.preferences.hoverTarget": "echo",
 	"java.referencesCodeLens.enabled": true,
-	"java.home": "/opt/jdk",
 	"java.import.gradle.enabled": true,
 	"java.import.gradle.wrapper.enabled": true
 }
