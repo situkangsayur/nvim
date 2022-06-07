@@ -2,7 +2,6 @@
 "
 " call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
 call plug#begin('~/.vim/plugged')
-Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'roxma/nvim-yarp'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "------------------------------------------------------------------------------"
@@ -160,8 +159,16 @@ Plug 'phpactor/phpactor', {'for': 'php', 'do': 'composer install --no-dev -o'}
 " to add tagbar togle
 Plug 'preservim/tagbar'
 Plug 'davidhalter/jedi-vim'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'davidhalter/jedi-vim'
+Plug 'puremourning/vimspector'
 call plug#end()
 
+let g:EditorConfig_exec_path = '.editorconfig'
+let g:EditorConfig_core_mode = 'external_command'
+
+nmap <F1> :CocCommand java.debug.vimspector.start<CR>
 " this is important for dev icons to work
 set encoding=UTF-8
 
@@ -176,9 +183,11 @@ source /home/hendri/.config/nvim/plug-config/barbar.vim
 
 source /home/hendri/.config/nvim/plug-config/coc.vim 
 
-source /home/hendri/.config/nvim/plug-config/tagbar.vim
+source /home/hendri/.config/nvim/plug-config/tagbar.vim 
 
-lua require'nvim-treesitter.configs'.setup { ensure_installed = "maintained", highlight = { enable = true, }, }
+source /home/hendri/.config/nvim/plug-config/vimspector.vim
+
+" lua require'nvim-treesitter.configs'.setup { ensure_installed = "maintained", highlight = { enable = true, }, }
 
 set nornu
 

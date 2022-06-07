@@ -2,7 +2,7 @@
 	"languageserver": {
 		"go": {
 		  "command": "gopls",
-		  "rootPatterns": ["go.mod"],
+		  "rootPatterns": ["go.mod", ".vim/", ".git/"],
 		  "trace.server": "verbose",
 		  "filetypes": ["go"]
 		}
@@ -16,7 +16,8 @@
 		"html",
 		"yaml",
 		"json",
-		"python"
+		"python",
+		"kotlin"
 	],
 	// python config
 	"python.linting.enabled": true,
@@ -61,8 +62,7 @@
 		"*"
 	],
 	"java.format.settings.url" : "/home/hendri/.config/nvim/blibli_profile_code_formatter_updated.xml",
-	"java.jdt.ls.vmargs": "-javaagent:/usr/local/share/lombok/lombok-1.18.4.jar",
-	"java.jdt.ls.home":"/home/hendri/apps/jdt-language-server",
+	"java.jdt.ls.vmargs": "-javaagent:/usr/local/share/lombok/lombok.jar",
 	"java.trace.server": "verbose",
 	"coc.preferences.snippets.enable": true,
 	"diagnostic.messageTarget": "float",
