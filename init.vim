@@ -158,11 +158,11 @@ Plug 'phpactor/phpactor', {'for': 'php', 'do': 'composer install --no-dev -o'}
 
 " to add tagbar togle
 Plug 'preservim/tagbar'
-Plug 'davidhalter/jedi-vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'davidhalter/jedi-vim'
 Plug 'puremourning/vimspector'
+Plug 'fatih/vim-go'
 call plug#end()
 
 let g:EditorConfig_exec_path = '.editorconfig'
@@ -177,18 +177,18 @@ set encoding=UTF-8
 
 " source /home/hendri/.config/nvim/plug-config/plugins.vim 
 
-source /home/hendri/.config/nvim/plug-config/s1n7ax.vim
+source /Users/hendrikarisma/.config/nvim/plug-config/s1n7ax.vim
 
-source /home/hendri/.config/nvim/plug-config/barbar.vim 
+source /Users/hendrikarisma/.config/nvim/plug-config/barbar.vim 
 
-source /home/hendri/.config/nvim/plug-config/coc.vim 
+source /Users/hendrikarisma/.config/nvim/plug-config/coc.vim 
 
-source /home/hendri/.config/nvim/plug-config/tagbar.vim 
+source /Users/hendrikarisma/.config/nvim/plug-config/tagbar.vim 
 
-source /home/hendri/.config/nvim/plug-config/vimspector.vim
+source /home/hendrikarisma/.config/nvim/plug-config/vimspector.vim
 
 " lua require'nvim-treesitter.configs'.setup { ensure_installed = "maintained", highlight = { enable = true, }, }
 
 set nornu
 
-source /home/hendri/.config/nvim/plug-config/php.vim
+source /Users/hendrikarisma/.config/nvim/plug-config/php.vim
