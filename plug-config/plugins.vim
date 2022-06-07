@@ -2,7 +2,8 @@
 "
 " call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
 call plug#begin('~/.vim/plugged')
-Plug 'nvim-treesitter/nvim-treesitter'
+
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'roxma/nvim-yarp'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "------------------------------------------------------------------------------"
@@ -125,8 +126,8 @@ Plug 'tomasiser/vim-code-dark'
 "------------------------------------------------------------------------------"
 "                                  vim ariline                                 "
 "------------------------------------------------------------------------------"
-" Plug 'vim-airline/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " Declare the list of plugins.
 Plug 'junegunn/seoul256.vim'
@@ -142,6 +143,32 @@ Plug 'mfussenegger/nvim-dap'
 
 " plugin for font replaced before
 " Plug 'ryanoasis/vim-devicons'
+" List ends here. Plugins become visible to Vim after this call.
+"------------------------------------------------------------------------------"
+"                                   dev icons                                  "
+"------------------------------------------------------------------------------"
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'kyazdani42/nvim-tree.lua'
+Plug 'romgrk/barbar.nvim'
+Plug 'romgrk/doom-one.vim'
+" Plug 'ryanoasis/vim-devicons'
+Plug 'mhinz/vim-signify'
+
+"------------------------------------------------------------------------------"
+"                                   php specific plugin                                  "
+"------------------------------------------------------------------------------"
+Plug 'StanAngeloff/php.vim', { 'for': 'php' }
+Plug 'stephpy/vim-php-cs-fixer', { 'for': 'php' }
+Plug 'jwalton512/vim-blade'
+Plug 'phpactor/phpactor', {'for': 'php', 'do': 'composer install --no-dev -o'}
+
+" to add tagbar togle
+Plug 'preservim/tagbar'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'davidhalter/jedi-vim'
+Plug 'puremourning/vimspector'
+Plug 'fatih/vim-go'
 " List ends here. Plugins become visible to Vim after this call.
 "
 call plug#end()
