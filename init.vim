@@ -163,6 +163,9 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'davidhalter/jedi-vim'
 Plug 'puremourning/vimspector'
+
+" kotlin
+Plug 'udalov/kotlin-vim'
 call plug#end()
 
 let g:EditorConfig_exec_path = '.editorconfig'
