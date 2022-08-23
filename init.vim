@@ -1,7 +1,5 @@
 " Plugins will be downloaded under the specified directory.
 "
-<<<<<<< HEAD
-=======
 " call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
 call plug#begin('~/.vim/plugged')
 Plug 'roxma/nvim-yarp'
@@ -147,7 +145,7 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'romgrk/barbar.nvim'
 Plug 'romgrk/doom-one.vim'
-" Plug 'ryanoasis/vim-devicons'
+Plug 'ryanoasis/vim-devicons'
 Plug 'mhinz/vim-signify'
 
 "------------------------------------------------------------------------------"
@@ -177,7 +175,7 @@ nmap <F1> :CocCommand java.debug.vimspector.start<CR>
 " this is important for dev icons to work
 set encoding=UTF-8
 
-
+set guifont=hack_nerd_font:h21
 
 source /Users/hendrikarisma/.config/nvim/plug-config/plugins.vim 
 
