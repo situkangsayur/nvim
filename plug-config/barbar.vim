@@ -48,4 +48,4 @@ nnoremap <silent> <Space>bl :BufferOrderByLanguage<CR>
 "
 " call plug#end()
 "
-source /home/hendri/.config/nvim/plug-config/autoload/bufferline.vim
+source /Users/hendrikarisma/.config/nvim/plug-config/autoload/bufferline.vim

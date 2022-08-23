@@ -1,8 +1,8 @@
 {
 	"languageserver": {
 		"go": {
-		  "command": "gopls",
 		  "rootPatterns": ["go.mod", ".vim/", ".git/"],
+		  "command": "/opt/homebrew/bin/gopls",
 		  "trace.server": "verbose",
 		  "filetypes": ["go"]
 		}
