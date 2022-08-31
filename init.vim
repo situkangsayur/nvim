@@ -145,7 +145,7 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'romgrk/barbar.nvim'
 Plug 'romgrk/doom-one.vim'
-" Plug 'ryanoasis/vim-devicons'
+Plug 'ryanoasis/vim-devicons'
 Plug 'mhinz/vim-signify'
 
 "------------------------------------------------------------------------------"
@@ -163,6 +163,8 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'davidhalter/jedi-vim'
 Plug 'puremourning/vimspector'
+
+Plug 'ternjs/tern_for_vim', { 'do' : 'npm install' }
 
 " kotlin
 Plug 'udalov/kotlin-vim'

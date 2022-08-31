@@ -143,11 +143,11 @@ imap <C-;> <Plug>(coc-snippets-expand)
 " Use <leader>x for convert visual selected code to snippet
 xmap <leader>x  <Plug>(coc-convert-snippet)
 
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+" inoremap <silent><expr> <TAB>
+"       \ pumvisible() ? coc#_select_confirm() :
+"       \ coc#expandableOrJumpable() ? \"\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+"       \ <SID>check_back_space() ? \"\<TAB>" :
+"       \ coc#refresh()
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -182,7 +182,7 @@ Plug 'ianks/vim-tsx'
 " ignore files and folders in git ignore
 command! FZFGitIgnore call fzf#run(fzf#wrap({'source': 'git ls-files --exclude-standard --others --cached'}))
 nmap <C-p> :FZFGitIgnore <CR>
-imap <C-p> <Esc>:FZFGitIgnore <CR>
+imap <C-i> <Esc>:FZFGitIgnore <CR>
 nmap <C-B> :Buffers <CR>
 nnoremap <C-L> :Lines <CR>
 nmap <Leader>fzl <Esc>:Lines<CR>
