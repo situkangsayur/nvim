@@ -58,6 +58,7 @@ endif
 " \: \"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>\"i
 
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+inoremap <silent><expr> <Tab> coc#pum#visible() ? coc#pum#next(1) : "\<C-n>"
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
 nmap <silent> [g <Plug>(coc-diagnostic-prev)

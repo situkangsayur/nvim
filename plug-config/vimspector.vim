@@ -6,6 +6,8 @@ nmap <leader>vw :VimspectorWatch
 nmap <leader>vo :VimspectorShowOutput
 xmap <leader>vi <Plug>VimspectorBalloonEval
 nmap <leader>vc :call vimspector#ClearBreakpoints()<CR>
+
+nmap <F1> :CocCommand java.debug.vimspector.start<CR>
 " for normal mode - the word under the cursor
 " for visual mode, the visually selected text
 
