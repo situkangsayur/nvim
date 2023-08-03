@@ -168,6 +168,10 @@ Plug 'ternjs/tern_for_vim', { 'do' : 'npm install' }
 
 " kotlin
 Plug 'udalov/kotlin-vim'
+
+" poetry
+Plug 'petobens/poet-v'
+
 call plug#end()
 
 let g:EditorConfig_exec_path = '.editorconfig'
@@ -193,7 +197,8 @@ source /home/hendri/.config/nvim/plug-config/tagbar.vim
 source /home/hendri/.config/nvim/plug-config/vimspector.vim
 
 " lua require'nvim-treesitter.configs'.setup { ensure_installed = "maintained", highlight = { enable = true, }, }
-
 set nornu
 
 source /home/hendri/.config/nvim/plug-config/php.vim
+
+lua require('plugins')

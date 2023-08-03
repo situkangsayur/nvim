@@ -511,6 +511,9 @@ nnoremap <Leader>th :sp<CR>10<C-w>_:terminal<CR>i
 nnoremap c* *Ncgn
 nnoremap d* *Ndgn
 
+nmap <Leader>ws <Plug>(coc-metals-expand-decoration)
 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 "                                 KEY BINDS END                                "
 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+"
+"
