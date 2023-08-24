@@ -54,14 +54,12 @@ endfunction
 
 inoremap <silent><expr> <c-space> coc#refresh()
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-nmap <silent> [c <Plug>(coc-diagnostic-prev)
-nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
 " Remap keys for gotos
-nmap <silent> gd :vsp<CR><Plug>(coc-definition)zz
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+" nmap <silent> gd :vsp<CR><Plug>(coc-definition)zz
+" nmap <silent> gy <Plug>(coc-type-definition)
+" nmap <silent> gi <Plug>(coc-implementation)
+" nmap <silent> gr <Plug>(coc-references)
 
 
 " Use K to show documentation in preview window
@@ -77,27 +75,6 @@ endfunction
 
 " Highlight symbol under cursor on CursorHold
 " autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
-
-" Remap for format selected region
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-
-
-augroup mygroup
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
-
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>ac  <Plug>(coc-codeaction)
-nmap <leader>qf  <Plug>(coc-fix-current)
 
 command! -nargs=0 Format 	:call 		CocAction('format')
 command! -nargs=? Fold 		:call 		CocAction('fold', <f-args>)
@@ -155,29 +132,6 @@ endfunction
 
 let g:coc_snippet_next = '<tab>'
 
-"------------------------------------------------------------------------------"
-"                                vim javascript                                "
-"------------------------------------------------------------------------------"
-" Plug 'pangloss/vim-javascript'
-
-
-"------------------------------------------------------------------------------"
-"                                    vim tsx                                   "
-"------------------------------------------------------------------------------"
-Plug 'ianks/vim-tsx'
-
-
-"------------------------------------------------------------------------------"
-"                                typescript vim                                "
-"------------------------------------------------------------------------------"
-" Plug 'leafgarland/typescript-vim'
-
-
-"------------------------------------------------------------------------------"
-"                                      fzf                                     "
-"------------------------------------------------------------------------------"
-" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-" Plug 'junegunn/fzf.vim'
 " ignore files and folders in git ignore
 command! FZFGitIgnore call fzf#run(fzf#wrap({'source': 'git ls-files --exclude-standard --others --cached'}))
 nmap <C-p> :FZFGitIgnore <CR>
