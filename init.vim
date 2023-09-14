@@ -133,8 +133,6 @@ Plug 'junegunn/seoul256.vim'
 
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-Plug 'mfussenegger/nvim-dap'
-
 " plugin for font replaced before
 " Plug 'ryanoasis/vim-devicons'
 " List ends here. Plugins become visible to Vim after this call.
@@ -221,4 +219,4 @@ set nornu
 
 source /home/hendri/.config/nvim/plug-config/php.vim
 
-lua require('plugins')
+lua require('scala-config')
