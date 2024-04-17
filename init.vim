@@ -219,4 +219,4 @@ set nornu
 
 source /home/hendri/.config/nvim/plug-config/php.vim
 
-lua require('scala-config')
+" lua require('scala-config')

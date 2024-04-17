@@ -47,10 +47,10 @@ require("packer").startup(function(use)
     },
   })
 	use({
-	  'nvim-telescope/telescope-packer.nvim',
+	  "nvim-telescope/telescope-packer.nvim",
 	  requires = { 
-		  'nvim-lua/plenary.nvim',
-		'nvim-telescope/telescope.nvim'
+		"nvim-lua/plenary.nvim",
+		"nvim-telescope/telescope.nvim"
 		}
 	})
 
