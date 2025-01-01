@@ -170,7 +170,15 @@ Plug 'udalov/kotlin-vim'
 " poetry
 Plug 'petobens/poet-v'
 
-" scala
+" delphi pascal 
+Plug 'skywind3000/asyncrun.vim'  " For async make 
+Plug 'Shougo/neosnippet'         " For snippet support   
+Plug 'godlygeek/tabular',        " For aligning    
+Plug 'mattia72/vim-delphi' 
+Plug 'rust-lang/rust.vim'
+
+"
+"scala
 " Plug 'neovim/nvim-lspconfig'
 " Plug 'hrsh7th/cmp-nvim-lsp'
 " Plug 'hrsh7th/cmp-buffer'
@@ -202,10 +210,10 @@ set encoding=UTF-8
 
 " lua require'nvim-treesitter.configs'.setup { ensure_installed = "maintained", highlight = { enable = true, }, }
 
-" source /home/hendri/.config/nvim/plug-config/plugins.vim 
 
 source /home/hendri/.config/nvim/plug-config/s1n7ax.vim
 
+" source /home/hendri/.config/nvim/plug-config/plugins.vim 
 source /home/hendri/.config/nvim/plug-config/barbar.vim 
 
 source /home/hendri/.config/nvim/plug-config/coc.vim 

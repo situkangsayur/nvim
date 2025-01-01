@@ -2,7 +2,7 @@
 "
 " call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
 call plug#begin('~/.vim/plugged')
-Plug 'nvim-treesitter/nvim-treesitter'
+" Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'roxma/nvim-yarp'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "------------------------------------------------------------------------------"
@@ -59,17 +59,13 @@ Plug 'Raimondi/delimitMate'
 "------------------------------------------------------------------------------"
 "                                nerd commenter                                "
 "------------------------------------------------------------------------------"
-Plug 'scrooloose/nerdcommenter'
+" Plug 'scrooloose/nerdcommenter'
 
 "------------------------------------------------------------------------------"
 "                                 comment frame                                "
 "------------------------------------------------------------------------------"
 Plug 'cometsong/CommentFrame.vim'
 
-"------------------------------------------------------------------------------"
-"                                   nerd tree                                  "
-"------------------------------------------------------------------------------"
-Plug 'scrooloose/nerdtree'
 "------------------------------------------------------------------------------"
 "                                   vim viki                                   "
 "------------------------------------------------------------------------------"
@@ -147,4 +143,3 @@ Plug 'mfussenegger/nvim-dap'
 call plug#end()
 
 " lua require'nvim-treesitter.configs'.setup { ensure_installed = "maintained", highlight = { enable = true, }, }
-

@@ -136,5 +136,19 @@
       "typescript",
       "typescriptreact"
     ]
-  }
+  },
+  "python.analysis.diagnosticEnabled": true,
+  "python.linting.enabled": true,
+  "python.linting.pylintEnabled": true,
+  "python.linting.flake8Enabled": false,
+  "python.linting.mypyEnabled": false,
+  "python.formatting.provider": "black",
+//   "python.formatting.blackArgs": [
+//           "-l",
+//           "79"
+//       ],
+  "python.poetryPath": "poetry",
+  "python.jediEnabled": true,
+  "coc.preferences.formatOnSaveFiletypes": ["python"],
+  "rust-client.disableRustup": true
 }
