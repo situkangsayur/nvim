@@ -198,6 +198,9 @@ Plug 'rust-lang/rust.vim'
 " Plug 'dcampos/nvim-snippy'
 " Plug 'dcampos/cmp-snippy'
 
+Plug 'nvim-lua/plenary.nvim'
+Plug 'gutsavgupta/nvim-gemini-companion'
+
 call plug#end()
 
 let g:EditorConfig_exec_path = '.editorconfig'
@@ -228,3 +231,4 @@ set nornu
 source /home/hendri/.config/nvim/plug-config/php.vim
 
 lua require('scala-config')
+lua require('gemini-config')
