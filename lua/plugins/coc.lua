@@ -93,16 +93,20 @@ return {
     map('n', '<space>p', ':<C-u>CocListResume<CR>', { silent = true, nowait = true })
     
     -- Completion mappings
-    function _G.check_back_space()
-      local col = vim.fn.col('.') - 1
-      return not col == 0 and vim.fn.getline('.'):sub(col, col) ~= ' '
-    end
+    -- Define check_back_space as a VimScript function for use in expression mappings
+    vim.cmd([[
+      function! CheckBackspace() abort
+        let col = col('.') - 1
+        return !col || getline('.')[col - 1]  =~# '\s'
+      endfunction
+    ]])
+
     map('i', '<C-space>', 'coc#refresh()', { silent = true, expr = true })
-    map('i', '<CR>', 'pumvisible() ? "\\<C-y>" : "\\<C-g>u\\<CR>"', { silent = true, expr = true })
-    map('i', '<Tab>', 'coc#pum#visible() ? coc#pum#next(1) : _G.check_back_space() ? "\\<TAB>" : coc#refresh()', { silent = true, expr = true })
-    map('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<C-h>"', { silent = true, expr = true })
-    map('i', '<C-j>', 'pumvisible() ? "\\<C-n>" : _G.check_back_space() ? "\\<TAB>" : coc#refresh()', { silent = true, expr = true })
-    map('i', '<C-k>', 'pumvisible() ? "\\<C-p>" : "\\<C-h>"', { silent = true, expr = true })
+    map('i', '<CR>', 'coc#pum#visible() ? coc#pum#confirm() : "\\<C-g>u\\<CR>"', { silent = true, expr = true })
+    map('i', '<Tab>', 'coc#pum#visible() ? coc#pum#next(1) : CheckBackspace() ? "\\<TAB>" : coc#refresh()', { silent = true, expr = true })
+    map('i', '<S-Tab>', 'coc#pum#visible() ? coc#pum#prev(1) : "\\<C-h>"', { silent = true, expr = true })
+    map('i', '<C-j>', 'coc#pum#visible() ? coc#pum#next(1) : CheckBackspace() ? "\\<TAB>" : coc#refresh()', { silent = true, expr = true })
+    map('i', '<C-k>', 'coc#pum#visible() ? coc#pum#prev(1) : "\\<C-h>"', { silent = true, expr = true })
 
     -- Snippet mappings
     map('i', '<C-l>', '<Plug>(coc-snippets-expand-jump)', { silent = true })
