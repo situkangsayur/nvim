@@ -20,8 +20,10 @@ Complete keyboard shortcuts and function reference for this Neovim configuration
 - [File Explorer (NERDTree)](#file-explorer-nerdtree)
 - [Fuzzy Finder (FZF)](#fuzzy-finder-fzf)
 - [Code Outline](#code-outline)
+- [Jupyter Notebooks & REPL](#jupyter-notebooks--repl)
 - [Terminal](#terminal)
 - [Commands](#commands)
+- [Setup & Maintenance](#setup--maintenance)
 
 ---
 
@@ -261,6 +263,63 @@ Complete keyboard shortcuts and function reference for this Neovim configuration
 
 ---
 
+## Jupyter Notebooks & REPL
+
+### Working with Jupyter Notebooks
+
+This config supports Jupyter notebooks through **Jupytext** and **Iron.nvim**.
+
+| Shortcut | Mode | Description |
+|----------|------|-------------|
+| `,rs` | Normal | Start IPython REPL |
+| `,rr` | Normal | Restart REPL |
+| `,rf` | Normal | Focus REPL window |
+| `,rh` | Normal | Hide REPL window |
+| `,sc` | Normal/Visual | Send code to REPL |
+| `,sl` | Normal | Send line to REPL |
+| `,sm` | Normal | Send mark to REPL |
+| `,s<CR>` | Normal | Send and execute |
+| `,s<Space>` | Normal | Interrupt execution |
+| `,sq` | Normal | Exit REPL |
+| `,cl` | Normal | Clear REPL |
+
+### Usage
+
+**Open Jupyter Notebook:**
+```bash
+nvim notebook.ipynb
+```
+
+Jupytext automatically converts `.ipynb` to Python format with cell markers (`# %%`).
+
+**Workflow:**
+1. Open `.ipynb` file in Neovim
+2. Press `,rs` to start IPython REPL
+3. Write/edit code in cells (marked with `# %%`)
+4. Visual select code and press `,sc` to execute in REPL
+5. Or press `,sl` to execute current line
+6. Save file - changes sync back to `.ipynb`
+
+**Cell Format:**
+```python
+# %% [markdown]
+# # Title
+
+# %%
+import pandas as pd
+df = pd.read_csv('data.csv')
+
+# %%
+df.head()
+```
+
+**Requirements:**
+```bash
+pip install ipython ipykernel jupytext
+```
+
+---
+
 ## Terminal
 
 | Shortcut | Mode | Description |
@@ -371,6 +430,268 @@ Common extensions:
 - **Plugins**: `~/.config/nvim/lua/plugins/`
 - **Plugin data**: `~/.local/share/nvim/lazy/`
 - **CoC config**: `~/.config/nvim/coc-settings.json`
+
+---
+
+## Setup & Maintenance
+
+### Initial Setup
+
+#### 1. Install Required Dependencies
+
+**Node.js (for CoC.nvim):**
+```bash
+# Install NVM (Node Version Manager)
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+
+# Restart terminal or source:
+source ~/.bashrc  # or ~/.zshrc
+
+# Install Node.js v20 LTS (recommended for CoC)
+nvm install 20
+nvm use 20
+nvm alias default 20
+
+# Verify installation
+node --version  # Should show v20.x.x
+npm --version
+```
+
+**Python (for Jupyter & LSP):**
+```bash
+# Install Python dependencies
+pip install ipython ipykernel jupytext pynvim
+```
+
+**Universal CTags (for Tagbar):**
+```bash
+sudo apt install universal-ctags  # Ubuntu/Debian
+# or
+brew install universal-ctags       # macOS
+```
+
+#### 2. Install Neovim Plugins
+
+```bash
+# Open Neovim
+nvim
+
+# Install plugins (lazy.nvim will auto-install on first run)
+:Lazy sync
+```
+
+#### 3. Install CoC Extensions
+
+```vim
+" Essential extensions
+:CocInstall coc-json coc-tsserver coc-pyright coc-prettier
+
+" Language-specific (install as needed)
+:CocInstall coc-java coc-go coc-rust-analyzer coc-html coc-css
+```
+
+---
+
+### Updating & Maintenance
+
+#### Update All Plugins
+
+```vim
+:Lazy sync         " Sync all plugins
+:Lazy update       " Update plugins
+:Lazy clean        " Remove unused plugins
+```
+
+#### Update CoC Extensions
+
+```vim
+:CocUpdate         " Update all CoC extensions
+:CocUpdateSync     " Update synchronously
+```
+
+#### Update Node.js for CoC
+
+If you get CoC errors related to Node.js:
+
+```bash
+# Check current Node version
+node --version
+
+# If using Node v24+ or having issues, switch to v20 LTS
+nvm install 20
+nvm use 20
+nvm alias default 20
+
+# Rebuild CoC
+nvim
+:Lazy clean
+:Lazy sync
+```
+
+#### Update NVM
+
+```bash
+# Update NVM itself
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+source ~/.bashrc
+```
+
+---
+
+### Common Issues & Solutions
+
+#### CoC Error: `Reflect.hasOwnMetadata is not a function`
+
+**Solution:**
+```bash
+# Switch to Node.js v20 LTS
+nvm install 20
+nvm use 20
+nvm alias default 20
+
+# Remove and reinstall CoC
+rm -rf ~/.local/share/nvim/lazy/coc.nvim
+
+# Restart Neovim
+nvim
+:Lazy sync
+```
+
+#### CoC Not Starting
+
+```vim
+:checkhealth        " Check overall health
+:CocInfo            " Check CoC status
+:CocRestart         " Restart CoC server
+
+" If still not working:
+:Lazy clean
+:Lazy sync
+```
+
+#### Treesitter Errors
+
+```vim
+:TSUpdate           " Update all parsers
+:TSInstall python   " Install specific parser
+:TSInstallInfo      " Check installed parsers
+```
+
+#### Plugins Not Loading
+
+```vim
+:Lazy              " Open plugin manager UI
+:Lazy sync         " Sync plugins
+:Lazy restore      " Restore from lockfile
+```
+
+---
+
+### Performance Optimization
+
+#### Reduce Startup Time
+
+```bash
+# Check startup time
+nvim --startuptime startup.log
+
+# View the log
+cat startup.log
+```
+
+**Tips:**
+- Lazy-load plugins with `event`, `ft`, or `cmd`
+- Disable unused plugins
+- Use `lazy = true` for plugins you don't always need
+
+#### Clear Caches
+
+```bash
+# Clear plugin cache
+rm -rf ~/.local/share/nvim/lazy/
+
+# Clear CoC cache
+rm -rf ~/.config/coc/
+
+# Reinstall
+nvim
+:Lazy sync
+```
+
+---
+
+### Backup & Sync
+
+**Backup your config:**
+```bash
+# Create backup
+cp -r ~/.config/nvim ~/.config/nvim.backup
+
+# Or use git
+cd ~/.config/nvim
+git add .
+git commit -m "Backup config"
+git push
+```
+
+**Sync across machines:**
+```bash
+# On new machine
+git clone https://github.com/yourusername/nvim-config.git ~/.config/nvim
+nvim
+:Lazy sync
+:CocInstall coc-json coc-tsserver coc-pyright
+```
+
+---
+
+### Node.js Version Management
+
+**Recommended setup for CoC.nvim:**
+
+```bash
+# Install specific Node versions
+nvm install 20      # LTS (recommended)
+nvm install 18      # Older LTS
+nvm install 22      # Latest LTS
+
+# List installed versions
+nvm list
+
+# Switch between versions
+nvm use 20          # Use v20
+nvm use 18          # Use v18
+
+# Set default for new shells
+nvm alias default 20
+
+# Use project-specific version
+# Create .nvmrc in project root:
+echo "20" > .nvmrc
+# Then in that directory:
+nvm use
+```
+
+**Automatic version switching:**
+
+Add to `~/.bashrc` or `~/.zshrc`:
+```bash
+# Auto-load .nvmrc
+autoload -U add-zsh-hook
+load-nvmrc() {
+  local nvmrc_path="$(nvm_find_nvmrc)"
+  if [ -n "$nvmrc_path" ]; then
+    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+    if [ "$nvmrc_node_version" = "N/A" ]; then
+      nvm install
+    elif [ "$nvmrc_node_version" != "$(nvm version)" ]; then
+      nvm use
+    fi
+  fi
+}
+add-zsh-hook chpwd load-nvmrc
+load-nvmrc
+```
 
 ---
 

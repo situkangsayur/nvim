@@ -1,6 +1,7 @@
 return {
   'neoclide/coc.nvim',
   branch = 'release',
+  build = 'npm ci',  -- Rebuild on install
   config = function()
     vim.opt.hidden = true
     vim.opt.backup = false
