@@ -29,14 +29,16 @@ vim.opt.shell = "/bin/sh"
 vim.opt.number = true
 vim.opt.relativenumber = true
 
--- Cursor settings
-vim.opt.t_SI = "\27[6 q" -- SI = INSERT mode
-vim.opt.t_SR = "\27[4 q" -- SR = REPLACE mode
-vim.opt.t_EI = "\27[2 q" -- EI = NORMAL mode (ELSE)
+-- Cursor settings (for terminal)
+vim.cmd([[
+  let &t_SI = "\e[6 q"
+  let &t_SR = "\e[4 q"
+  let &t_EI = "\e[2 q"
+]])
 
 -- Code folding
 vim.opt.foldmethod = "syntax"
-vim.opt.nofoldenable = true
+vim.opt.foldenable = false
 
 vim.opt.spelllang = "en"
 
@@ -56,8 +58,8 @@ vim.opt.scrolloff = 10
 vim.opt.clipboard = "unnamedplus"
 
 vim.opt.termguicolors = true -- assuming colorscheme sonokai is a true color scheme
-vim.opt.t_Co = 256
-vim.opt.nohls = true -- nohlsearch
+vim.cmd('set t_Co=256')
+vim.opt.hlsearch = false -- nohlsearch
 vim.cmd('syntax on')
 
 vim.opt.fillchars = "vert:│" -- set fillchars+=vert:\|
