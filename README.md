@@ -8,7 +8,7 @@ Complete keyboard shortcuts and function reference for this Neovim configuration
 ---
 
 ## Table of Contents
-
+		
 - [General](#general)
 - [File Navigation](#file-navigation)
 - [Window & Buffer Management](#window--buffer-management)
