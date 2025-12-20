@@ -9,7 +9,7 @@ let
       "clippy-preview"
       "rustfmt-preview"
     ];
-  };
+  }; 
 in
   with nixpkgs;
   stdenv.mkDerivation {
