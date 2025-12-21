@@ -1,5 +1,6 @@
 return {
   'scrooloose/nerdtree',
+  dependencies = { 'ryanoasis/vim-devicons' },
   config = function()
     vim.g.NERDTreeMapOpenInTab = '<Leader>ntt'
     vim.keymap.set('n', '<Leader>nt', ':NERDTree<CR>')

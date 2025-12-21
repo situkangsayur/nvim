@@ -9,8 +9,13 @@ return {
       "mfussenegger/nvim-dap",
     },
     config = function()
-      require('plenary.path')
-      local metals_config = require("metals").bare_config()
+      -- Check if nvim-metals is available
+      local metals_ok, metals = pcall(require, "metals")
+      if not metals_ok then
+        return
+      end
+
+      local metals_config = metals.bare_config()
       metals_config.settings = {
         showImplicitArguments = true,
         excludedPackages = { "akka.actor.typed.javadsl", "com.github.swagger.akka.javadsl" },

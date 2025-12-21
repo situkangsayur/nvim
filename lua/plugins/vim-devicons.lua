@@ -1,56 +1,70 @@
 return {
   'ryanoasis/vim-devicons',
-  config = function()
+  lazy = false,
+  priority = 1000,
+  init = function()
     -- Customize folder/directory icons
     vim.g.WebDevIconsUnicodeDecorateFolderNodes = 1
     vim.g.DevIconsEnableFoldersOpenClose = 1
     vim.g.DevIconsEnableFolderExtensionPatternMatching = 1
 
-    -- Add custom file type icons
+    -- Add custom file type icons with Nerd Fonts
     vim.g.WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {
-      js = '',
-      ts = '',
-      tsx = '',
-      jsx = '',
-      json = '',
-      md = '',
+      js = '󰌞',
+      ts = '󰛦',
+      tsx = '󰜈',
+      jsx = '󰜈',
+      json = '󰘦',
+      md = '󰍔',
       vim = '',
-      py = '',
-      lua = '',
-      go = '',
-      rs = '',
-      html = '',
-      css = '',
-      scss = '',
+      py = '󰌠',
+      lua = '󰢱',
+      go = '󰟓',
+      rs = '󱘗',
+      rb = '󰴭',
+      java = '󰬷',
+      c = '󰙱',
+      cpp = '󰙲',
+      cs = '󰌛',
+      php = '󰌟',
+      swift = '󰛥',
+      kt = '󱈙',
+      dart = '󰯲',
+      html = '󰌝',
+      css = '󰌜',
+      scss = '󰟬',
+      sass = '󰟬',
+      less = '󰌜',
+      xml = '󰗀',
+      yaml = '󰈙',
+      yml = '󰈙',
+      toml = '󰈙',
       sh = '',
-      yml = '',
-      yaml = '',
-      toml = '',
-      xml = '',
-      sql = '',
-      git = '',
-      png = '',
-      jpg = '',
-      jpeg = '',
-      svg = '',
-      pdf = '',
-      zip = '',
-      tar = '',
-      lock = '',
+      bash = '',
+      zsh = '',
+      fish = '',
+      sql = '󰆼',
+      db = '󰆼',
+      sqlite = '󰆼',
+      png = '󰋩',
+      jpg = '󰋩',
+      jpeg = '󰋩',
+      gif = '󰋩',
+      svg = '󰜡',
+      ico = '󰋩',
+      webp = '󰋩',
+      pdf = '󰈦',
+      zip = '󰗄',
+      tar = '󰗄',
+      gz = '󰗄',
+      lock = '󰌾',
+      log = '󰌱',
+      txt = '󰈙',
+      dockerfile = '󰡨',
+      makefile = '',
     }
 
-    -- Custom exact filename icons
-    vim.g.WebDevIconsUnicodeDecorateFileNodesExactSymbols = {
-      ['package.json'] = '',
-      ['Dockerfile'] = '',
-      ['Makefile'] = '',
-      ['README.md'] = '',
-      ['LICENSE'] = '',
-      ['.gitignore'] = '',
-      ['.env'] = '',
-    }
-
-    -- Folder icons
+    -- Folder icons with Nerd Fonts
     vim.g.WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = ''
     vim.g.DevIconsDefaultFolderOpenSymbol = ''
 

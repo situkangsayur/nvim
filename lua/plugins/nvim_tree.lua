@@ -60,9 +60,9 @@ return {
             modified = true,
           },
           glyphs = {
-            default = "",
+            default = "󰈙",
             symlink = "",
-            bookmark = "",
+            bookmark = "󰃀",
             modified = "●",
 
             -- Folder icons
@@ -71,21 +71,21 @@ return {
               arrow_open = "",
               default = "",
               open = "",
-              empty = "",
-              empty_open = "",
+              empty = "󰜌",
+              empty_open = "󰜌",
               symlink = "",
               symlink_open = "",
             },
 
             -- Git status icons
             git = {
-              unstaged = "✗",
-              staged = "✓",
+              unstaged = "󰄱",
+              staged = "󰱒",
               unmerged = "",
-              renamed = "➜",
-              untracked = "★",
-              deleted = "",
-              ignored = "◌",
+              renamed = "󰁕",
+              untracked = "",
+              deleted = "󰍵",
+              ignored = "󰿠",
             },
           },
         },
