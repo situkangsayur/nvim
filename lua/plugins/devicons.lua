@@ -14,7 +14,7 @@ return {
         py = { icon = "󰌠", color = "#3776ab", name = "Python" },
         pyc = { icon = "󰌠", color = "#3776ab", name = "PythonCompiled" },
         lua = { icon = "󰢱", color = "#000080", name = "Lua" },
-        rb = { icon = "󰴭", color = "#cc342d", name = "Ruby" },
+        rb = { icon = "", color = "#cc342d", name = "Ruby" },
         go = { icon = "󰟓", color = "#00add8", name = "Go" },
         rs = { icon = "󱘗", color = "#dea584", name = "Rust" },
         java = { icon = "󰬷", color = "#b07219", name = "Java" },

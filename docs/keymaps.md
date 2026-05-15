@@ -2,6 +2,60 @@
 
 > Auto-generated from config files. Leader key: `,`
 
+## Legenda
+
+### Mode Vim/Neovim
+
+Kolom **Mode** menunjukkan di mode mana keybinding aktif. Vim/Neovim modal —
+artinya tombol yang sama bisa berbeda fungsi tergantung mode.
+
+| Kode | Nama Mode | Penjelasan | Cara Masuk |
+|------|-----------|------------|------------|
+| `n` | **Normal** | Mode default untuk navigasi & menjalankan command. Tombol huruf jadi command (mis. `dd`, `yy`). | Tekan `<Esc>` (atau `jk` di config ini). |
+| `i` | **Insert** | Mode mengetik teks seperti editor biasa. | `i`, `a`, `o`, `I`, `A`, `O` dari Normal. |
+| `v` | **Visual** | Mode select karakter. | `v` dari Normal. |
+| `x` | **Visual (non-Select)** | Sama seperti Visual tapi tidak termasuk Select mode. Sering dipakai untuk mapping yang hanya berlaku saat blok dipilih. | `v` / `V` / `<C-v>` dari Normal. |
+| `o` | **Operator-pending** | Mode singkat setelah operator (mis. `d`, `c`, `y`) menunggu motion/text-object berikutnya. | Otomatis setelah operator, mis. setelah menekan `d`. |
+| `t` | **Terminal** | Mode aktif saat fokus di dalam `:terminal`. | Otomatis saat masuk terminal buffer. |
+| `c` | **Command-line** | Mode mengetik command setelah `:`, `/`, `?`. | `:`, `/`, `?` dari Normal. |
+| `s` | **Select** | Mirip Visual tapi mengetik langsung mengganti seleksi (seperti editor GUI). | `gh` / `gH` / `g<C-h>`. |
+
+Beberapa kolom mode di tabel menulis `n/x` atau `x/o` — artinya mapping aktif di
+kedua mode tersebut.
+
+### Leader Key
+
+**Leader** adalah tombol prefix yang dapat dikustomisasi sebagai "tombol command
+personal". Dipakai supaya banyak shortcut bisa dirangkai tanpa bertabrakan
+dengan command bawaan Vim.
+
+- Di config ini leader = **`,`** (koma), didefinisikan di `init.lua:15`
+  (`vim.g.mapleader = ','`).
+- Notasi `<Leader>` dan `<leader>` di tabel di bawah → **tekan `,` dulu**, lalu
+  tombol berikutnya dalam ~1 detik (timeout default `timeoutlen`).
+- Contoh: `<Leader>e` = tekan `,` lalu `e` → `:NvimTreeToggle`.
+- Contoh: `<Leader>tv` = tekan `,` lalu `t` lalu `v` → buka terminal vertikal.
+
+Catatan: ada juga `<space>...` di beberapa mapping (mis. `<space>e`,
+`<space>r`). Ini menggunakan tombol **Space**, bukan leader. Kebetulan dipakai
+sebagai prefix sekunder untuk command CoC dan lain-lain.
+
+### Notasi Tombol Lainnya
+
+| Notasi | Artinya |
+|--------|---------|
+| `<C-x>` | Tekan **Ctrl** + `x` |
+| `<S-x>` | Tekan **Shift** + `x` |
+| `<A-x>` | Tekan **Alt** + `x` |
+| `<CR>` | **Enter** (Carriage Return) |
+| `<Esc>` | Tombol **Escape** |
+| `<Tab>` / `<S-Tab>` | **Tab** / **Shift+Tab** |
+| `<F1>`..`<F12>` | Function keys |
+| `<space>` | Tombol **Spasi** |
+| `<Plug>(...)` | Mapping internal plugin, biasanya dipakai sebagai target re-map |
+
+---
+
 ## General (init.lua)
 
 | Mode | Key | Action | Description |
@@ -38,15 +92,6 @@
 | n | `<Leader>ef` | `:NvimTreeFindFile<CR>` | Find file in tree |
 | n | `<Leader>ec` | `:NvimTreeCollapse<CR>` | Collapse tree |
 
-## File Explorer - NERDTree
-
-| Mode | Key | Action | Description |
-|------|-----|--------|-------------|
-| n | `<Leader>nt` | `:NERDTree<CR>` | Open NERDTree |
-| n | `<Leader>ntf` | `:NERDTreeFocus<CR>` | Focus NERDTree |
-| n | `<Leader>1` | `:NERDTreeFocus<CR>` | Focus NERDTree (alt) |
-| n | `<Leader>ntr` | `:NERDTreeRefreshRoot<CR>` | Refresh root |
-
 ## Buffer Management - Barbar
 
 | Mode | Key | Action | Description |
@@ -66,13 +111,20 @@
 
 | Mode | Key | Action | Description |
 |------|-----|--------|-------------|
-| n | `<C-p>` | `:FZFGitIgnore<CR>` | Fuzzy find files |
-| i | `<C-i>` | `:FZFGitIgnore<CR>` | Fuzzy find files (insert) |
+| n | `<C-p>` | `:FZFSmart<CR>` | Fuzzy find files (auto: GFiles in git repo, else Files) |
+| i | `<C-i>` | `:FZFSmart<CR>` | Fuzzy find files (insert) |
 | n | `<C-B>` | `:Buffers<CR>` | FZF buffers |
 | n | `<C-L>` | `:Lines<CR>` | FZF lines |
 | n | `<Leader>fzl` | `:Lines<CR>` | FZF lines (alt) |
 | n | `<Leader>fzb` | `:Buffers<CR>` | FZF buffers (alt) |
 | n | `<Leader>fzc` | `:Commits<CR>` | FZF commits |
+| n | `<Leader>fzf` | `:Files<CR>` | List all files in cwd (force Files) |
+
+> **Catatan:** `:FZFSmart` mendeteksi apakah cwd berada di dalam git repo.
+> Bila ya menggunakan `:GFiles --exclude-standard --others --cached` (menampilkan
+> tracked + untracked, mengikuti `.gitignore`). Bila tidak, fallback ke `:Files`
+> yang melist semua file di cwd. Ini memperbaiki kasus saat `<C-p>` tidak
+> menampilkan list file di luar git repo.
 
 ## CoC - Navigation & LSP
 
@@ -250,3 +302,21 @@
 | Mode | Key | Action | Description |
 |------|-----|--------|-------------|
 | n | `<leader>po` | `:TagbarToggle<CR>` | Toggle Tagbar |
+
+---
+
+## Konflik Keymap yang Diketahui
+
+| Key | Konflik | Catatan |
+|-----|---------|---------|
+| `<C-s>` | `init.lua` → save (`:w<CR>`) **vs** `barbar.lua` → `:BufferPick` | Karena `barbar` di-load setelah `init.lua`, kemungkinan `<C-s>` akhirnya melakukan `BufferPick`, bukan save. Gunakan `:w<CR>` manual atau remap salah satu. |
+| `<C-l>` | `init.lua` → pindah split kanan **vs** CoC → expand/jump snippet (insert mode) | Tidak konflik karena mode berbeda (normal vs insert). |
+| `<leader>f` | CoC → format **vs** nvim-metals → format | Sama-sama format, tidak masalah fungsional. |
+| `<leader>rn` | CoC → rename **vs** nvim-metals → rename | Sama-sama rename, tidak masalah fungsional. |
+| `<space>e` | `init.lua` → buka `$MYVIMRC` **vs** CoC → `:CocList extensions` | Yang dieksekusi belakangan akan menang (cek `:verbose nmap <space>e`). |
+
+## Tips Troubleshooting
+
+- Untuk memeriksa keymap aktif: `:verbose nmap <key>` (normal), `:verbose imap <key>` (insert).
+- Untuk reload config setelah edit: tekan `<space>r`.
+- Bila `<C-p>` tidak menampilkan file: pastikan plugin `fzf` ter-install (`:Lazy sync`) dan biner `fzf` ada di PATH.

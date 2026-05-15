@@ -21,7 +21,7 @@ return {
       lua = '󰢱',
       go = '󰟓',
       rs = '󱘗',
-      rb = '󰴭',
+      rb = '',
       java = '󰬷',
       c = '󰙱',
       cpp = '󰙲',
