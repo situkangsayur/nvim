@@ -16,6 +16,7 @@ Complete keyboard shortcuts and function reference for this Neovim configuration
 - [Code Editing](#code-editing)
 - [Code Formatting & Refactoring](#code-formatting--refactoring)
 - [Code Completion](#code-completion)
+- [AI Assistants (Claude Code & Gemini)](#ai-assistants-claude-code--gemini)
 - [Debugging (Vimspector)](#debugging-vimspector)
 - [File Explorer (NERDTree)](#file-explorer-nerdtree)
 - [Fuzzy Finder (FZF)](#fuzzy-finder-fzf)
@@ -208,6 +209,43 @@ Complete keyboard shortcuts and function reference for this Neovim configuration
 | `Ctrl+j` | Visual | Select snippet |
 | `Ctrl+;` | Insert | Expand snippet |
 | `Tab` | Insert | Next snippet placeholder |
+
+---
+
+## AI Assistants (Claude Code & Gemini)
+
+Two AI CLIs run inside Neovim. Leader is `,`, so `<leader>k…` = `,k…`.
+Both need their CLI on `PATH` (`claude` and `gemini`).
+
+### Claude Code (`,k…`) — full IDE integration
+
+| Shortcut | Mode | Description |
+|----------|------|-------------|
+| `,kc` | Normal | Toggle the Claude panel — then type your prompt in it |
+| `,kf` | Normal | Focus the Claude panel to type |
+| `,kb` | Normal | Add the current buffer to Claude's context |
+| `,ks` | Visual | Send the selection to Claude as context |
+| `,ky` / `,kn` | Normal | Accept / reject a diff Claude proposes |
+| `,kr` / `,kC` | Normal | Resume a previous / continue the last session |
+| `,km` | Normal | Pick the Claude model |
+
+**Prompting flow:** optionally select code (`,ks`) or add the file (`,kb`) as
+context → `,kc` to open the panel and type your instruction → when Claude
+proposes an edit it opens as a diff you accept with `,ky` or reject with `,kn`.
+
+### Gemini (`,g…`) — CLI sidebar
+
+| Shortcut | Mode | Description |
+|----------|------|-------------|
+| `,gg` | Normal | Toggle the Gemini sidebar — type your prompt there |
+| `,gc` | Normal | Spawn / switch to the AI CLI session |
+| `,gS` | Visual | Send the selection to Gemini as context |
+
+**Prompting flow:** `,gg` opens the sidebar and you type directly; to include
+code, select it in visual mode and press `,gS` (capital S).
+
+> Inside an AI panel/terminal, return to normal mode with `<Esc>` or `jk`.
+> See `docs/keymaps.md` for the full table.
 
 ---
 

@@ -295,27 +295,51 @@ sebagai prefix sekunder untuk command CoC dan lain-lain.
 | n | `<F8>` | `:NextColorScheme<CR>` | Next colorscheme |
 | n | `<F7>` | `:PrevColorScheme<CR>` | Previous colorscheme |
 
-## Gemini AI
+## AI Assistants (Claude Code & Gemini)
 
-| Mode | Key | Action | Description |
-|------|-----|--------|-------------|
-| n | `<leader>gg` | `:GeminiToggle` | Toggle Gemini sidebar |
-| n | `<leader>gc` | `:GeminiSwitchToCli` | Switch to AI CLI |
-| x | `<leader>gS` | `:'<,'>GeminiSend` | Send selection to AI |
+Dua asisten AI berjalan sebagai CLI di dalam Neovim. Ingat `<leader>` = `,`.
 
-## Claude Code
+- **Claude Code** (`,k…`) — integrasi penuh ala IDE: sadar buffer & seleksi, bisa
+  kirim diff yang Anda terima/tolak langsung di editor.
+- **Gemini** (`,g…`) — sidebar CLI Gemini, kirim seleksi sebagai konteks.
 
-| Mode | Key | Action | Description |
-|------|-----|--------|-------------|
-| n | `<leader>kc` | `:ClaudeCode` | Toggle Claude terminal |
-| n | `<leader>kf` | `:ClaudeCodeFocus` | Focus Claude terminal |
-| n | `<leader>kr` | `:ClaudeCode --resume` | Resume previous session |
-| n | `<leader>kC` | `:ClaudeCode --continue` | Continue last session |
-| n | `<leader>km` | `:ClaudeCodeSelectModel` | Pilih model Claude |
-| n | `<leader>kb` | `:ClaudeCodeAdd %` | Tambah buffer aktif ke konteks |
-| x | `<leader>ks` | `:ClaudeCodeSend` | Kirim seleksi ke Claude |
-| n | `<leader>ky` | `:ClaudeCodeDiffAccept` | Terima diff dari Claude |
-| n | `<leader>kn` | `:ClaudeCodeDiffDeny` | Tolak diff dari Claude |
+### Claude Code — prompting
+
+| Mode | Key | Action | Kapan dipakai |
+|------|-----|--------|---------------|
+| n | `<leader>kc` | `:ClaudeCode` | Buka/tutup panel Claude — lalu **ketik prompt** di panelnya |
+| n | `<leader>kf` | `:ClaudeCodeFocus` | Pindah kursor ke panel Claude untuk mengetik |
+| n | `<leader>kr` | `:ClaudeCode --resume` | Lanjutkan salah satu sesi lama (pilih dari daftar) |
+| n | `<leader>kC` | `:ClaudeCode --continue` | Lanjutkan sesi terakhir langsung |
+| n | `<leader>km` | `:ClaudeCodeSelectModel` | Ganti model Claude lalu buka panel |
+| n | `<leader>kb` | `:ClaudeCodeAdd %` | Masukkan **buffer aktif** ke konteks prompt |
+| x | `<leader>ks` | `:ClaudeCodeSend` | Kirim **teks terseleksi** sebagai konteks prompt |
+| n | `<leader>ky` | `:ClaudeCodeDiffAccept` | Terima perubahan/diff yang diajukan Claude |
+| n | `<leader>kn` | `:ClaudeCodeDiffDeny` | Tolak perubahan/diff yang diajukan Claude |
+
+**Alur prompting Claude:**
+1. (Opsional) seleksi kode di visual mode → `,ks`, atau `,kb` untuk seluruh file,
+   sebagai konteks.
+2. `,kc` untuk membuka panel (atau `,kf` untuk fokus) lalu ketik instruksi Anda.
+3. Bila Claude mengajukan edit, file terbuka sebagai diff → `,ky` menerima,
+   `,kn` menolak.
+4. `,kr` / `,kC` untuk menyambung percakapan sebelumnya.
+
+### Gemini — prompting
+
+| Mode | Key | Action | Kapan dipakai |
+|------|-----|--------|---------------|
+| n | `<leader>gg` | `:GeminiToggle` | Buka/tutup sidebar Gemini — lalu **ketik prompt** di sidebar |
+| n | `<leader>gc` | `:GeminiSwitchToCli` | Spawn / pindah ke sesi CLI AI |
+| x | `<leader>gS` | `:'<,'>GeminiSend` | Kirim **seleksi** ke Gemini sebagai konteks |
+
+**Alur prompting Gemini:**
+1. `,gg` membuka sidebar; ketik instruksi langsung di sana.
+2. Untuk menyertakan kode: seleksi di visual mode → `,gS` (huruf besar S).
+3. `,gc` untuk berpindah/menjalankan sesi CLI bila perlu.
+
+> Catatan: kedua tool dijalankan dari CLI (`claude` & `gemini`) yang harus ada di
+> PATH. Di dalam panel/terminal AI, keluar ke normal mode dengan `<Esc>` atau `jk`.
 
 ## Tagbar
 

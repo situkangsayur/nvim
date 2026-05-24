@@ -118,6 +118,7 @@
 //       ],
   "python.poetryPath": "poetry",
   "python.jediEnabled": false,
+  "kotlin.languageServer.path": "/home/hendri/.local/bin/kotlin-language-server",
   "rust-analyzer.enable": true,
   "java.imports.gradle.wrapper.checksums": [
     {
