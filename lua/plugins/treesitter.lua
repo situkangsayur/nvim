@@ -1,5 +1,9 @@
 return {
   'nvim-treesitter/nvim-treesitter',
+  -- Kept on the classic 'master' branch: the default 'main' branch is a rewrite
+  -- with a different API (no 'nvim-treesitter.configs'). Migrating to 'main' is a
+  -- separate task that requires rewriting the config below.
+  branch = 'master',
   build = ':TSUpdate',
   event = { "BufReadPost", "BufNewFile" },
   config = function()

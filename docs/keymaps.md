@@ -297,6 +297,20 @@ sebagai prefix sekunder untuk command CoC dan lain-lain.
 | n | `<leader>gc` | `:GeminiSwitchToCli` | Switch to AI CLI |
 | x | `<leader>gS` | `:'<,'>GeminiSend` | Send selection to AI |
 
+## Claude Code
+
+| Mode | Key | Action | Description |
+|------|-----|--------|-------------|
+| n | `<leader>kc` | `:ClaudeCode` | Toggle Claude terminal |
+| n | `<leader>kf` | `:ClaudeCodeFocus` | Focus Claude terminal |
+| n | `<leader>kr` | `:ClaudeCode --resume` | Resume previous session |
+| n | `<leader>kC` | `:ClaudeCode --continue` | Continue last session |
+| n | `<leader>km` | `:ClaudeCodeSelectModel` | Pilih model Claude |
+| n | `<leader>kb` | `:ClaudeCodeAdd %` | Tambah buffer aktif ke konteks |
+| x | `<leader>ks` | `:ClaudeCodeSend` | Kirim seleksi ke Claude |
+| n | `<leader>ky` | `:ClaudeCodeDiffAccept` | Terima diff dari Claude |
+| n | `<leader>kn` | `:ClaudeCodeDiffDeny` | Tolak diff dari Claude |
+
 ## Tagbar
 
 | Mode | Key | Action | Description |
