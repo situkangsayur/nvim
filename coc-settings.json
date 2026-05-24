@@ -5,51 +5,23 @@
   "metals.statusBarEnabled" : true,
   "metals.superMethodLensesEnabled": true,
   "codeLens.enable": true,
-  "languageserver": {
-    "ccls": {
-        "command": "ccls",
-        "filetypes": [
-          "c",
-          "cpp",
-          "objc",
-          "objcpp",
-          "cc"
-        ],
-        "rootPatterns": [
-          "compile_commands.json",
-          ".ccls",
-          ".root",
-          ".git/"
-        ],
-        "initializationOptions": {
-          "cacheDirectory": "/tmp/ccls"
-        }
-      },
-      "go": {
-        "command": "gopls",
-        "rootPatterns": [
-          "go.mod",
-          ".vim/",
-          ".git/"
-        ],
-        "trace.server": "verbose",
-        "filetypes": [
-          "go"
-        ]
-      }
-    },
   "coc.preferences.formatOnSaveFiletypes": [
     "java",
     "go",
-    "css",
-    "markdown",
-    "javascript",
-    "graphql",
-    "html",
-    "yaml",
-    "json",
+    "rust",
     "python",
-    "kotlin"
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "html",
+    "css",
+    "json",
+    "yaml",
+    "markdown",
+    "kotlin",
+    "c",
+    "cpp"
   ],
   // python config
   "python.linting.enabled": true,
@@ -90,9 +62,6 @@
   "prettier.eslintIntegration": true,
   "prettier.stylelintIntegration": true,
   "prettier.statusItemText": "Prettier",
-  "coc.preferences.formatOnSaveFiletypes": [
-    "*"
-  ],
   "java.jdt.ls.java.home": "/usr/lib/jvm/java-21-openjdk-amd64",
   "java.configuration.runtimes": [
         {
@@ -114,7 +83,7 @@
   "diagnostic.messageTarget": "float",
   "suggest.floatEnable": true,
   "signature.target": "preview",
-  "coc.preferences.hoverTarget": "echo",
+  "coc.preferences.hoverTarget": "float",
   "java.referencesCodeLens.enabled": true,
   "java.import.gradle.enabled": true,
   "java.import.gradle.wrapper.enabled": true,
@@ -148,8 +117,7 @@
 //           "79"
 //       ],
   "python.poetryPath": "poetry",
-  "python.jediEnabled": true,
-  "coc.preferences.formatOnSaveFiletypes": ["python"],
+  "python.jediEnabled": false,
   "rust-analyzer.enable": true,
   "java.imports.gradle.wrapper.checksums": [
     {

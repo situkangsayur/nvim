@@ -3,6 +3,26 @@ return {
   branch = 'release',
   build = 'npm ci',  -- Rebuild on install
   config = function()
+    -- Language extensions coc auto-installs/keeps in sync on startup.
+    -- Each pulls in (or manages) the language server for its languages:
+    --   go=gopls, rust=rust-analyzer, clangd=C/C++, pyright=Python,
+    --   tsserver=JS/TS, java=jdt.ls, kotlin=kotlin-language-server,
+    --   html/css/json bundle their own servers.
+    vim.g.coc_global_extensions = {
+      'coc-json',
+      'coc-tsserver',      -- JavaScript / TypeScript
+      'coc-html',
+      'coc-css',
+      'coc-pyright',       -- Python
+      'coc-java',
+      'coc-kotlin',
+      'coc-go',            -- Go (manages gopls)
+      'coc-rust-analyzer', -- Rust
+      'coc-clangd',        -- C / C++
+      'coc-snippets',
+      'coc-prettier',
+    }
+
     vim.opt.hidden = true
     vim.opt.backup = false
     vim.opt.writebackup = false
