@@ -118,7 +118,23 @@
 //       ],
   "python.poetryPath": "poetry",
   "python.jediEnabled": false,
-  "kotlin.languageServer.path": "/home/hendri/.local/bin/kotlin-language-server",
+  "languageserver": {
+    "kotlin": {
+      "command": "/home/hendri/.local/bin/kotlin-language-server",
+      "filetypes": ["kotlin"],
+      "rootPatterns": [
+        "settings.gradle.kts",
+        "settings.gradle",
+        "build.gradle.kts",
+        "build.gradle",
+        "pom.xml",
+        ".git/"
+      ],
+      "initializationOptions": {
+        "storagePath": "/home/hendri/.cache/kotlin-language-server"
+      }
+    }
+  },
   "rust-analyzer.enable": true,
   "java.imports.gradle.wrapper.checksums": [
     {

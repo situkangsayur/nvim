@@ -1,4 +1,4 @@
-# Neovim Keymaps Reference
+[#](#) Neovim Keymaps Reference
 
 > Auto-generated from config files. Leader key: `,`
 
@@ -258,13 +258,23 @@ sebagai prefix sekunder untuk command CoC dan lain-lain.
 | n | `<leader>sq` | Exit | Exit REPL |
 | n | `<leader>cl` | Clear | Clear REPL |
 
-## Symbols Outline
+## Code Outline — Atribut, Method & Function
 
-| Mode | Key | Action | Description |
-|------|-----|--------|-------------|
-| n | `<leader>so` | `:SymbolsOutline<CR>` | Toggle Symbols Outline |
+Untuk menganalisis daftar class / atribut / method / function dari file, ada 3 cara
+(panel muncul di **sisi kanan**). Semuanya masih tersedia:
 
-**Internal keymaps (within outline window):**
+| Mode | Key | Action | Sumber | Catatan |
+|------|-----|--------|--------|---------|
+| n | `<leader>so` | `:SymbolsOutline` | LSP (coc) | **Rekomendasi** — akurat, hierarkis, ikon per jenis (class/method/field/property/function); ikut semua bahasa yang sudah dikonfigurasi |
+| n | `<leader>po` | `:TagbarToggle` | ctags | Gaya lama berbasis Universal Ctags (yang dulu Anda pakai); butuh `ctags` di PATH |
+| n | `<space>o` | `:CocList outline` | LSP (coc) | Simbol file aktif sebagai fuzzy list (cepat untuk lompat) |
+| n | `<space>s` | `:CocList -I symbols` | LSP (coc) | Cari simbol di **seluruh workspace** |
+
+> Untuk analisis atribut/method/function, pakai `<leader>so` (Symbols Outline) —
+> berbasis language server jadi akurat untuk Go/Rust/C++/Python/JS-TS/Java/Kotlin/dst.
+> `<leader>po` (Tagbar) tetap ada bila Anda lebih suka alur ctags.
+
+**Internal keymaps (within Symbols Outline window):**
 
 | Key | Description |
 |-----|-------------|
@@ -340,12 +350,6 @@ Dua asisten AI berjalan sebagai CLI di dalam Neovim. Ingat `<leader>` = `,`.
 
 > Catatan: kedua tool dijalankan dari CLI (`claude` & `gemini`) yang harus ada di
 > PATH. Di dalam panel/terminal AI, keluar ke normal mode dengan `<Esc>` atau `jk`.
-
-## Tagbar
-
-| Mode | Key | Action | Description |
-|------|-----|--------|-------------|
-| n | `<leader>po` | `:TagbarToggle<CR>` | Toggle Tagbar |
 
 ---
 

@@ -141,7 +141,9 @@ else
 fi
 
 # ----------------------------------------------------------------------------
-# 7. Kotlin language server  (coc-kotlin needs an external server binary)
+# 7. Kotlin language server  (wired directly via coc-settings.json languageserver
+#    block; needs this binary on the system. Install 'gradle' too if your Kotlin
+#    projects resolve dependencies via Gradle — the server otherwise falls back to Maven.)
 # ----------------------------------------------------------------------------
 info "kotlin-language-server"
 if have kotlin-language-server; then
@@ -208,7 +210,6 @@ cat > "$COC_EXT_DIR/package.json" <<'JSON'
     "coc-css": ">=1.4.0",
     "coc-pyright": ">=1.1.400",
     "coc-java": ">=1.26.1",
-    "coc-kotlin": ">=0.1.0",
     "coc-go": ">=1.3.35",
     "coc-rust-analyzer": ">=0.86.0",
     "coc-clangd": ">=0.27.0",
