@@ -120,9 +120,14 @@ map('n', '<C-k>', '<C-w>k')
 map('n', '<C-l>', '<C-w>l')
 
 -- create / manage splits  (mnemonic: - horizontal line, \ vertical bar)
-map('n', '<Leader>-', ':split<CR>', { silent = true, desc = 'Split horizontal' })
-map('n', '<Leader>\\', ':vsplit<CR>', { silent = true, desc = 'Split vertical' })
+map('n', '<Leader>-', ':split<CR>', { silent = true, desc = 'Split horizontal (same buffer)' })
+map('n', '<Leader>\\', ':vsplit<CR>', { silent = true, desc = 'Split vertical (same buffer)' })
 map('n', '<Leader>=', '<C-w>=', { silent = true, desc = 'Equalize split sizes' })
+
+-- split + open new file via FZF picker (replaces <C-w>s / <C-w>v which kitty
+-- intercepts as close-tab). mnemonic: w = window, s/v = horizontal/vertical
+map('n', '<Leader>ws', ':split<CR>:FZFSmart<CR>', { silent = true, desc = 'Split horizontal + pick file' })
+map('n', '<Leader>wv', ':vsplit<CR>:FZFSmart<CR>', { silent = true, desc = 'Split vertical + pick file' })
 
 -- spell check
 map('n', '<F6>', ':setlocal spell! spelllang=en_us<CR>')
