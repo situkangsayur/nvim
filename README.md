@@ -89,6 +89,20 @@ Complete keyboard shortcuts and function reference for this Neovim configuration
 | `Ctrl+k` | Normal | Move to up window |
 | `Ctrl+l` | Normal | Move to right window |
 
+### Splits
+
+| Shortcut | Mode | Description |
+|----------|------|-------------|
+| `,-` | Normal | Split horizontal (same buffer) |
+| `,\` | Normal | Split vertical (same buffer) |
+| `,ws` | Normal | Split horizontal **+ pick file via FZF** |
+| `,wv` | Normal | Split vertical **+ pick file via FZF** |
+| `,=` | Normal | Equalize split sizes |
+
+> **Kitty terminal users:** `Ctrl+w` is intercepted by kitty as close-tab, so the
+> built-in `<C-w>s` / `<C-w>v` split shortcuts don't reach Neovim. Use the
+> `,-` / `,\` (same buffer) or `,ws` / `,wv` (pick a new file) mappings above.
+
 ### Buffer Management (Barbar)
 
 | Shortcut | Mode | Description |

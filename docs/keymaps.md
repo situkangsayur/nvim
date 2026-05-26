@@ -73,11 +73,13 @@ sebagai prefix sekunder untuk command CoC dan lain-lain.
 | n | `<C-j>` | `<C-w>j` | Move to bottom split |
 | n | `<C-k>` | `<C-w>k` | Move to top split |
 | n | `<C-l>` | `<C-w>l` | Move to right split |
-| n | `<Leader>-` | `:split` | Split horizontal |
-| n | `<Leader>\` | `:vsplit` | Split vertical |
+| n | `<Leader>-` | `:split` | Split horizontal (same buffer) |
+| n | `<Leader>\` | `:vsplit` | Split vertical (same buffer) |
+| n | `<Leader>ws` | `:split` + `:FZFSmart` | Split horizontal + pilih file via FZF |
+| n | `<Leader>wv` | `:vsplit` + `:FZFSmart` | Split vertical + pilih file via FZF |
 | n | `<Leader>=` | `<C-w>=` | Equalize split sizes |
-| n | `<C-w>s` | (builtin) | Split horizontal (bawaan Neovim) |
-| n | `<C-w>v` | (builtin) | Split vertical (bawaan Neovim) |
+| n | `<C-w>s` | (builtin) | Split horizontal (bawaan Neovim — **kitty intercept `<C-w>` sebagai close-tab**, pakai `<Leader>ws` / `<Leader>-`) |
+| n | `<C-w>v` | (builtin) | Split vertical (bawaan Neovim — sama, pakai `<Leader>wv` / `<Leader>\`) |
 | n | `<C-w>q` | (builtin) | Close split (bawaan Neovim) |
 | n | `<F6>` | `:setlocal spell!` | Toggle spell check |
 | n | `<Leader>vf` | `va{V` | Select function |
