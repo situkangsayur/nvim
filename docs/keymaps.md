@@ -79,7 +79,7 @@ sebagai prefix sekunder untuk command CoC dan lain-lain.
 | n | `<Leader>wv` | `SmartSplitPick('vertical')` | Split vertical + pilih file via FZF (tree-aware) |
 | n | `<Leader>=` | `<C-w>=` | Equalize split sizes |
 
-> **Catatan split tree-aware:** kalau kursor sedang di window **NvimTree**, `:split`/`:vsplit` polos akan membelah window tree-nya sendiri. `<Leader>-` / `<Leader>\` mendeteksi filetype `NvimTree` dan sebagai gantinya membuka **file di posisi kursor** ke split di **area editor (kanan tree)** lewat `api.node.open.horizontal/vertical`; tree dibiarkan utuh (folder/link di tree diabaikan, hanya file yang di-split). `<Leader>ws` / `<Leader>wv` lompat dulu ke window editor (`wincmd l`) sebelum split + FZF supaya hasilnya mendarat di area editor, bukan membelah tree. Di luar tree semuanya berperilaku seperti split biasa pada buffer saat ini.
+> **Catatan split tree-aware:** kalau kursor sedang di window **NvimTree**, `:split`/`:vsplit` polos akan membelah window tree-nya sendiri. `<Leader>-` / `<Leader>\` mendeteksi filetype `NvimTree` lalu memilih sendiri window editor (window non-tree & non-floating pertama di tab), pindah fokus ke sana, dan langsung `split`/`vsplit` **file di posisi kursor** di sana. Sengaja **tidak** memakai `api.node.open.*` karena saat ada 2+ window editor itu memicu prompt _"pick a window"_ nvim-tree; cara manual ini selalu langsung membuat split tanpa bertanya. Tree dibiarkan utuh (folder/link di tree diabaikan, hanya file yang di-split). `<Leader>ws` / `<Leader>wv` lompat dulu ke window editor (`wincmd l`) sebelum split + FZF supaya hasilnya mendarat di area editor. Untuk balik fokus ke tree dari window mana pun pakai `<Leader>wt`. Di luar tree semuanya berperilaku seperti split biasa pada buffer saat ini.
 | n | `<C-w>s` | (builtin) | Split horizontal (bawaan Neovim — **kitty intercept `<C-w>` sebagai close-tab**, pakai `<Leader>ws` / `<Leader>-`) |
 | n | `<C-w>v` | (builtin) | Split vertical (bawaan Neovim — sama, pakai `<Leader>wv` / `<Leader>\`) |
 | n | `<C-w>q` | (builtin) | Close split (bawaan Neovim) |
@@ -101,6 +101,7 @@ sebagai prefix sekunder untuk command CoC dan lain-lain.
 | n | `<Leader>e` | `:NvimTreeToggle<CR>` | Toggle NvimTree |
 | n | `<Leader>ef` | `:NvimTreeFindFile<CR>` | Find file in tree |
 | n | `<Leader>ec` | `:NvimTreeCollapse<CR>` | Collapse tree |
+| n | `<Leader>wt` | `:NvimTreeFocus<CR>` | Fokus balik ke tree di kiri (tanpa menutupnya) |
 
 ## Buffer Management - Barbar
 

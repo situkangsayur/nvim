@@ -88,6 +88,7 @@ Complete keyboard shortcuts and function reference for this Neovim configuration
 | `Ctrl+j` | Normal | Move to down window |
 | `Ctrl+k` | Normal | Move to up window |
 | `Ctrl+l` | Normal | Move to right window |
+| `,wt` | Normal | Focus the file tree on the left (without closing it) |
 
 ### Splits
 
@@ -104,10 +105,12 @@ Complete keyboard shortcuts and function reference for this Neovim configuration
 > `,-` / `,\` (same buffer) or `,ws` / `,wv` (pick a new file) mappings above.
 
 > **Tree-aware splits:** when the cursor is inside the NvimTree window, a plain
-> `:split`/`:vsplit` would carve up the tree itself. `,-` / `,\` instead open the
-> **file under the cursor** in a split in the editor area (right of the tree) and
-> leave the tree intact; `,ws` / `,wv` hop to the editor window first so the
-> FZF-picked file lands there. Outside the tree they behave like ordinary splits.
+> `:split`/`:vsplit` would carve up the tree itself. `,-` / `,\` instead pick an
+> editor window themselves and directly split the **file under the cursor** there
+> (no "pick a window" prompt — they deliberately avoid nvim-tree's window picker),
+> leaving the tree intact; `,ws` / `,wv` hop to the editor window first so the
+> FZF-picked file lands there. Use `,wt` to jump focus back to the tree. Outside
+> the tree they behave like ordinary splits.
 
 ### Buffer Management (Barbar)
 

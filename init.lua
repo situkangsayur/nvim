@@ -133,25 +133,37 @@ map('n', '<C-l>', '<C-w>l')
 -- tree completely alone. Anywhere else this behaves like a normal split of the
 -- current buffer at the current cursor position.
 _G.SmartSplit = function(direction)
+  local split_cmd = direction == 'vertical' and 'vsplit' or 'split'
+
   if vim.bo.filetype == 'NvimTree' then
     local api = require('nvim-tree.api')
     local node = api.tree.get_node_under_cursor()
     -- Only act on real files; directories/links keep their tree behavior.
-    if node and node.type == 'file' then
-      if direction == 'vertical' then
-        api.node.open.vertical()
-      else
-        api.node.open.horizontal()
+    if not (node and node.type == 'file') then
+      return
+    end
+
+    -- Don't use api.node.open.* here: with 2+ editor windows open it triggers
+    -- nvim-tree's window picker (the "pick a window" prompt). Instead we pick a
+    -- real editor window ourselves and split it deterministically — first
+    -- non-tree, non-floating window in the tab.
+    local target
+    for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+      local buf = vim.api.nvim_win_get_buf(win)
+      local floating = vim.api.nvim_win_get_config(win).relative ~= ''
+      if vim.bo[buf].filetype ~= 'NvimTree' and not floating then
+        target = win
+        break
       end
     end
+    if target then
+      vim.api.nvim_set_current_win(target)
+    end
+    vim.cmd(split_cmd .. ' ' .. vim.fn.fnameescape(node.absolute_path))
     return
   end
 
-  if direction == 'vertical' then
-    vim.cmd('vsplit')
-  else
-    vim.cmd('split')
-  end
+  vim.cmd(split_cmd)
 end
 
 map('n', '<Leader>-', function() _G.SmartSplit('horizontal') end, { silent = true, desc = 'Split horizontal (tree-aware)' })

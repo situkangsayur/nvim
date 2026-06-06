@@ -239,5 +239,8 @@ return {
     vim.keymap.set('n', '<Leader>e', ':NvimTreeToggle<CR>', { noremap = true, silent = true, desc = "Toggle NvimTree" })
     vim.keymap.set('n', '<Leader>ef', ':NvimTreeFindFile<CR>', { noremap = true, silent = true, desc = "Find file in NvimTree" })
     vim.keymap.set('n', '<Leader>ec', ':NvimTreeCollapse<CR>', { noremap = true, silent = true, desc = "Collapse NvimTree" })
+    -- Jump focus back to the tree on the left from any editor window (without
+    -- toggling it closed like <Leader>e would).
+    vim.keymap.set('n', '<Leader>wt', ':NvimTreeFocus<CR>', { noremap = true, silent = true, desc = "Focus NvimTree (back to tree)" })
   end
 }
