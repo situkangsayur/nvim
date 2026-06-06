@@ -14,6 +14,12 @@ vim.opt.rtp:prepend(lazypath)
 
 vim.g.mapleader = ','
 
+-- Matikan provider yang tidak dipakai (coc punya jembatan node sendiri; perl/ruby
+-- tidak dipakai). Menghilangkan warning di :checkhealth tanpa efek samping.
+vim.g.loaded_node_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
+
 -- setup plugins
 require("lazy").setup({
   spec = {
@@ -120,14 +126,54 @@ map('n', '<C-k>', '<C-w>k')
 map('n', '<C-l>', '<C-w>l')
 
 -- create / manage splits  (mnemonic: - horizontal line, \ vertical bar)
-map('n', '<Leader>-', ':split<CR>', { silent = true, desc = 'Split horizontal (same buffer)' })
-map('n', '<Leader>\\', ':vsplit<CR>', { silent = true, desc = 'Split vertical (same buffer)' })
+--
+-- Tree-aware split: when the cursor sits inside the nvim-tree window, a plain
+-- :split/:vsplit would split the *tree* itself. Instead, open the file under
+-- the cursor in a split in the editor area (right of the tree) and leave the
+-- tree completely alone. Anywhere else this behaves like a normal split of the
+-- current buffer at the current cursor position.
+_G.SmartSplit = function(direction)
+  if vim.bo.filetype == 'NvimTree' then
+    local api = require('nvim-tree.api')
+    local node = api.tree.get_node_under_cursor()
+    -- Only act on real files; directories/links keep their tree behavior.
+    if node and node.type == 'file' then
+      if direction == 'vertical' then
+        api.node.open.vertical()
+      else
+        api.node.open.horizontal()
+      end
+    end
+    return
+  end
+
+  if direction == 'vertical' then
+    vim.cmd('vsplit')
+  else
+    vim.cmd('split')
+  end
+end
+
+map('n', '<Leader>-', function() _G.SmartSplit('horizontal') end, { silent = true, desc = 'Split horizontal (tree-aware)' })
+map('n', '<Leader>\\', function() _G.SmartSplit('vertical') end, { silent = true, desc = 'Split vertical (tree-aware)' })
 map('n', '<Leader>=', '<C-w>=', { silent = true, desc = 'Equalize split sizes' })
 
 -- split + open new file via FZF picker (replaces <C-w>s / <C-w>v which kitty
 -- intercepts as close-tab). mnemonic: w = window, s/v = horizontal/vertical
-map('n', '<Leader>ws', ':split<CR>:FZFSmart<CR>', { silent = true, desc = 'Split horizontal + pick file' })
-map('n', '<Leader>wv', ':vsplit<CR>:FZFSmart<CR>', { silent = true, desc = 'Split vertical + pick file' })
+--
+-- Like the split maps above these are tree-aware: if invoked from the tree we
+-- first hop to the editor window so the new split (and the FZF-picked file)
+-- lands in the editor area instead of carving up the tree.
+_G.SmartSplitPick = function(direction)
+  if vim.bo.filetype == 'NvimTree' then
+    vim.cmd('wincmd l')
+  end
+  vim.cmd(direction == 'vertical' and 'vsplit' or 'split')
+  vim.cmd('FZFSmart')
+end
+
+map('n', '<Leader>ws', function() _G.SmartSplitPick('horizontal') end, { silent = true, desc = 'Split horizontal + pick file' })
+map('n', '<Leader>wv', function() _G.SmartSplitPick('vertical') end, { silent = true, desc = 'Split vertical + pick file' })
 
 -- spell check
 map('n', '<F6>', ':setlocal spell! spelllang=en_us<CR>')
