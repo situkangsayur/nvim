@@ -93,15 +93,21 @@ Complete keyboard shortcuts and function reference for this Neovim configuration
 
 | Shortcut | Mode | Description |
 |----------|------|-------------|
-| `,-` | Normal | Split horizontal (same buffer) |
-| `,\` | Normal | Split vertical (same buffer) |
-| `,ws` | Normal | Split horizontal **+ pick file via FZF** |
-| `,wv` | Normal | Split vertical **+ pick file via FZF** |
+| `,-` | Normal | Split horizontal (tree-aware — same buffer, or file under cursor when in tree) |
+| `,\` | Normal | Split vertical (tree-aware) |
+| `,ws` | Normal | Split horizontal **+ pick file via FZF** (tree-aware) |
+| `,wv` | Normal | Split vertical **+ pick file via FZF** (tree-aware) |
 | `,=` | Normal | Equalize split sizes |
 
 > **Kitty terminal users:** `Ctrl+w` is intercepted by kitty as close-tab, so the
 > built-in `<C-w>s` / `<C-w>v` split shortcuts don't reach Neovim. Use the
 > `,-` / `,\` (same buffer) or `,ws` / `,wv` (pick a new file) mappings above.
+
+> **Tree-aware splits:** when the cursor is inside the NvimTree window, a plain
+> `:split`/`:vsplit` would carve up the tree itself. `,-` / `,\` instead open the
+> **file under the cursor** in a split in the editor area (right of the tree) and
+> leave the tree intact; `,ws` / `,wv` hop to the editor window first so the
+> FZF-picked file lands there. Outside the tree they behave like ordinary splits.
 
 ### Buffer Management (Barbar)
 
