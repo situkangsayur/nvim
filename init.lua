@@ -213,3 +213,34 @@ map('n', 'd*', '*Ndgn')
 
 -- replace yanked word
 map('n', 'cp', ':let g:substitutemtion_reg = v:register <bar> set opfunc=_G.SubstituteMotion<CR>g@')
+
+-- ── Auto-reload buffer yang diubah dari luar (Claude Code / Gemini CLI nulis file) ──
+-- Tanpa ini, file yang ditulis AI baru kelihatan setelah :e manual. autoread +
+-- checktime berkala bikin perubahan muncul "live" di buffer yang sedang dibuka.
+vim.opt.autoread = true
+local reload_grp = vim.api.nvim_create_augroup('ai_autoreload', { clear = true })
+vim.api.nvim_create_autocmd(
+  { 'FocusGained', 'BufEnter', 'CursorHold', 'CursorHoldI', 'TermLeave' },
+  {
+    group = reload_grp,
+    callback = function()
+      if vim.fn.mode() ~= 'c' and vim.fn.getcmdwintype() == '' then
+        vim.cmd('silent! checktime')
+      end
+    end,
+  }
+)
+-- timer: cek perubahan tiap 1.5s walau cursor diam (AI nulis saat kamu ngetik)
+local reload_timer = vim.loop.new_timer()
+reload_timer:start(1500, 1500, vim.schedule_wrap(function()
+  if vim.fn.mode() ~= 'c' and vim.fn.getcmdwintype() == '' then
+    vim.cmd('silent! checktime')
+  end
+end))
+-- notifikasi kecil saat file di-reload
+vim.api.nvim_create_autocmd('FileChangedShellPost', {
+  group = reload_grp,
+  callback = function()
+    vim.notify('Buffer di-reload (diubah di disk)', vim.log.levels.INFO)
+  end,
+})
