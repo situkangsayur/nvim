@@ -3,7 +3,9 @@
 #
 # Installs Neovim (>= 0.10), Node.js, and every language server used by this
 # config's coc.nvim setup: Go, Rust, C/C++, Python, JS/TS, Java, Kotlin,
-# HTML/CSS, JSON. Safe to re-run (idempotent).
+# HTML/CSS, JSON, YAML, XML, TOML, Lua. Also bootstraps the Jupyter/molten
+# python host and the AI assistant CLIs (claude, gemini). Safe to re-run
+# (idempotent).
 #
 # Usage:  ./setup.sh
 
@@ -208,6 +210,10 @@ cat > "$COC_EXT_DIR/package.json" <<'JSON'
     "coc-tsserver": ">=2.3.1",
     "coc-html": ">=1.4.0",
     "coc-css": ">=1.4.0",
+    "coc-yaml": ">=1.9.0",
+    "coc-xml": ">=1.6.0",
+    "coc-toml": ">=1.5.0",
+    "coc-lua": ">=0.9.0",
     "coc-pyright": ">=1.1.400",
     "coc-java": ">=1.26.1",
     "coc-go": ">=1.3.35",
@@ -222,7 +228,58 @@ JSON
   && ok "coc extensions installed" || warn "coc extension install had warnings"
 
 # ----------------------------------------------------------------------------
-# 11. Bootstrap lazy.nvim plugins, then fetch clangd via coc-clangd
+# 11. taplo — TOML language server (backs coc-toml; LSP-capable "full" build)
+# ----------------------------------------------------------------------------
+info "taplo (TOML LSP for coc-toml)"
+if have taplo; then
+  ok "taplo present: $(taplo --version 2>/dev/null | head -1)"
+elif [[ "$OS" == "macos" ]]; then
+  pm_install taplo taplo && ok "taplo installed via brew"
+elif have cargo; then
+  cargo install taplo-cli --locked --features lsp && ok "taplo installed via cargo"
+else
+  # Linux: prebuilt "full" (LSP-enabled) binary from tamasfe/taplo
+  case "$ARCH" in x86_64) TARCH="x86_64" ;; arm64) TARCH="aarch64" ;; esac
+  tmp="$(mktemp -d)"
+  url="https://github.com/tamasfe/taplo/releases/latest/download/taplo-full-linux-${TARCH}.gz"
+  info "Downloading taplo ..."
+  if curl -fsSL -o "$tmp/taplo.gz" "$url"; then
+    gunzip -c "$tmp/taplo.gz" > "$HOME/.local/bin/taplo" && chmod +x "$HOME/.local/bin/taplo"
+    ok "taplo installed to ~/.local/bin"
+  else
+    warn "Failed to download taplo — coc-toml will try to fetch it on first use"
+  fi
+  rm -rf "$tmp"
+fi
+
+# ----------------------------------------------------------------------------
+# 12. Jupyter / molten python host (venv with pynvim, jupyter_client, image deps)
+#     image.nvim renders plots via the ImageMagick 'magick' CLI inside kitty.
+# ----------------------------------------------------------------------------
+info "Jupyter/molten python host (venv)"
+MOLTEN_VENV="$HOME/.local/share/nvim/molten-venv"
+if have python3; then
+  [[ -x "$MOLTEN_VENV/bin/python" ]] || python3 -m venv "$MOLTEN_VENV"
+  "$MOLTEN_VENV/bin/python" -m pip install -q --upgrade pip >/dev/null 2>&1 || true
+  if "$MOLTEN_VENV/bin/pip" install -q --upgrade \
+       pynvim jupyter_client ipykernel nbformat cairosvg pnglatex pillow requests; then
+    ok "molten-venv ready: $MOLTEN_VENV"
+  else
+    warn "some molten python deps failed to install"
+  fi
+else
+  warn "python3 not found — skip molten venv (Jupyter inline output disabled)"
+fi
+info "ImageMagick (image.nvim 'magick_cli' processor)"
+if have magick || have convert; then
+  ok "ImageMagick present"
+else
+  pm_install imagemagick imagemagick && ok "ImageMagick installed" || warn "install ImageMagick for inline plots"
+fi
+warn "image.nvim needs a graphics terminal (kitty) — inline plots are no-op elsewhere"
+
+# ----------------------------------------------------------------------------
+# 13. Bootstrap lazy.nvim plugins, then fetch clangd via coc-clangd
 # ----------------------------------------------------------------------------
 info "Syncing Neovim plugins (lazy.nvim) ..."
 nvim --headless "+Lazy! sync" +qa >/dev/null 2>&1 && ok "plugins synced" || warn "plugin sync reported issues"
@@ -236,7 +293,22 @@ else
 fi
 
 # ----------------------------------------------------------------------------
+# 14. AI assistant CLIs (drive the in-editor panels: claudecode.nvim & gemini)
+#     <Leader>a{c,g,x,a} switch one shared right-hand panel — see init.lua.
+# ----------------------------------------------------------------------------
+info "AI CLIs (claude, gemini)"
+if have claude; then ok "claude present"; \
+  elif have npm; then npm install -g @anthropic-ai/claude-code >/dev/null 2>&1 && ok "claude installed via npm" || warn "could not install claude — see https://claude.com/claude-code"; \
+  else warn "npm missing — install claude manually"; fi
+if have gemini; then ok "gemini present"; \
+  elif have npm; then npm install -g @google/gemini-cli >/dev/null 2>&1 && ok "gemini installed via npm" || warn "could not install gemini — see https://github.com/google-gemini/gemini-cli"; \
+  else warn "npm missing — install gemini manually"; fi
+
+# ----------------------------------------------------------------------------
 echo
 info "Done. Open nvim and run :checkhealth and :CocList extensions to verify."
-echo   "  Languages wired: Go, Rust, C/C++, Python, JS/TS, Java, Kotlin, HTML, CSS, JSON"
+echo   "  Languages wired: Go, Rust, C/C++, Python, JS/TS, Java, Kotlin, HTML, CSS,"
+echo   "                   JSON, YAML, XML, TOML, Lua"
+echo   "  Jupyter:  molten + image.nvim (run cells with <Leader>j*, needs kitty)"
+echo   "  AI panel: <Leader>a{c,g,x,a} switch Claude/Gemini in one right-hand split"
 echo   "  If 'nvim' still resolves to an old version, open a new terminal (PATH cache)."
