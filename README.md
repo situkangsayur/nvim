@@ -267,6 +267,21 @@ proposes an edit it opens as a diff you accept with `,ky` or reject with `,kn`.
 **Prompting flow:** `,gg` opens the sidebar and you type directly; to include
 code, select it in visual mode and press `,gS` (capital S).
 
+### Panel switcher (`,a…`) — Claude & Gemini share one panel
+
+Both assistants open a right-hand panel of the same width (0.4), so they share
+one region instead of stacking. The switcher shows one and closes the other:
+
+| Shortcut | Mode | Description |
+|----------|------|-------------|
+| `,ac` | Normal | Show Claude (closes Gemini) |
+| `,ag` | Normal | Show Gemini (closes Claude) |
+| `,ax` | Normal | Close both panels |
+| `,aa` | Normal | Pick which panel to show |
+
+`,ac` / `,ag` are idempotent — pressing one while its panel is already open just
+keeps it shown (defined as `_G.AIShow` / `_G.AIHide` in `init.lua`).
+
 > Inside an AI panel/terminal, return to normal mode with `<Esc>` or `jk`.
 > See `docs/keymaps.md` for the full table.
 
@@ -328,7 +343,27 @@ code, select it in visual mode and press `,gS` (capital S).
 
 ### Working with Jupyter Notebooks
 
-This config supports Jupyter notebooks through **Jupytext** and **Iron.nvim**.
+Two ways to run Python: **molten** (`,j…`) executes cells against a Jupyter
+kernel with **inline** output (text + plots via image.nvim/kitty), and
+**Iron.nvim** (`,r…` / `,s…`) is a lightweight text REPL in a split. `.ipynb`
+files are edited as percent-format Python via **Jupytext**.
+
+**molten — inline cell output** (Python host: venv `~/.local/share/nvim/molten-venv`,
+plots need kitty + ImageMagick; both set up by `setup.sh`):
+
+| Shortcut | Mode | Description |
+|----------|------|-------------|
+| `,ji` | Normal | Init Jupyter kernel for this buffer |
+| `,jl` | Normal | Evaluate current line |
+| `,je` | Normal | Evaluate by operator (e.g. `,jeip` = paragraph) |
+| `,j` | Visual | Evaluate selection |
+| `,jc` | Normal | Re-evaluate current cell |
+| `,jd` | Normal | Delete cell (with its output) |
+| `,jo` / `,jh` / `,js` | Normal | Enter / hide / show output window |
+| `,jr` / `,jx` | Normal | Restart kernel / interrupt execution |
+| `,jI` / `,jE` | Normal | Import / export output from/to `.ipynb` |
+
+**Iron.nvim — text REPL:**
 
 | Shortcut | Mode | Description |
 |----------|------|-------------|
@@ -432,14 +467,20 @@ To install CoC extensions, use:
 :CocInstall coc-<extension-name>
 ```
 
-Common extensions:
+Extensions wired by this config (installed deterministically by `setup.sh`):
 - `coc-json` - JSON support
 - `coc-tsserver` - TypeScript/JavaScript
+- `coc-html` / `coc-css` - HTML / CSS
+- `coc-yaml` - YAML
+- `coc-xml` - XML (lemminx; needs a JDK)
+- `coc-toml` - TOML (backed by the `taplo` server)
+- `coc-lua` - Lua (bundles lua-language-server)
 - `coc-pyright` - Python
 - `coc-java` - Java
 - `coc-go` - Go
 - `coc-rust-analyzer` - Rust
-- `coc-prettier` - Prettier formatting
+- `coc-clangd` - C/C++
+- `coc-snippets` / `coc-prettier` - snippets / Prettier formatting
 
 ### Updating Plugins
 

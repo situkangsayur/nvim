@@ -245,7 +245,36 @@ sebagai prefix sekunder untuk command CoC dan lain-lain.
 | n | `<leader>vc` | `vimspector#ClearBreakpoints()` | Clear breakpoints |
 | n | `<F1>` | Java debug start | Start Java debugger |
 
-## Jupyter / Iron REPL
+## Jupyter — molten (inline) & Iron REPL
+
+Dua jalur menjalankan kode Python di Neovim:
+
+- **molten** (`,j…`) — jalankan **sel** ke kernel Jupyter, output **inline** (teks +
+  plot via image.nvim/kitty). Cocok untuk alur notebook. Python host pakai venv
+  `~/.local/share/nvim/molten-venv` (lihat `setup.sh`); render gambar butuh
+  terminal kitty + ImageMagick.
+- **Iron REPL** (`,r…` / `,s…`) — REPL teks ringan di split (kirim baris/blok ke
+  ipython). Cocok untuk eksplorasi cepat tanpa kernel.
+
+### molten — sel notebook (output inline)
+
+| Mode | Key | Action | Description |
+|------|-----|--------|-------------|
+| n | `<leader>ji` | `:MoltenInit` | Init kernel Jupyter untuk buffer ini |
+| n | `<leader>jl` | `:MoltenEvaluateLine` | Eval baris saat ini |
+| n | `<leader>je` | `:MoltenEvaluateOperator` | Eval lewat operator (mis. `,jeip` = paragraf) |
+| x | `<leader>j` | `:MoltenEvaluateVisual` | Eval teks terseleksi |
+| n | `<leader>jc` | `:MoltenReevaluateCell` | Re-eval sel saat ini |
+| n | `<leader>jd` | `:MoltenDelete` | Hapus sel (beserta output-nya) |
+| n | `<leader>jo` | `:MoltenEnterOutput` | Masuk ke window output |
+| n | `<leader>jh` | `:MoltenHideOutput` | Sembunyikan output |
+| n | `<leader>js` | `:MoltenShowOutput` | Tampilkan output |
+| n | `<leader>jr` | `:MoltenRestart!` | Restart kernel |
+| n | `<leader>jx` | `:MoltenInterrupt` | Interrupt eksekusi |
+| n | `<leader>jI` | `:MoltenImportOutput` | Import output dari `.ipynb` |
+| n | `<leader>jE` | `:MoltenExportOutput` | Export output ke `.ipynb` |
+
+### Iron REPL — REPL teks
 
 | Mode | Key | Action | Description |
 |------|-----|--------|-------------|
@@ -317,6 +346,20 @@ Dua asisten AI berjalan sebagai CLI di dalam Neovim. Ingat `<leader>` = `,`.
 - **Claude Code** (`,k…`) — integrasi penuh ala IDE: sadar buffer & seleksi, bisa
   kirim diff yang Anda terima/tolak langsung di editor.
 - **Gemini** (`,g…`) — sidebar CLI Gemini, kirim seleksi sebagai konteks.
+- **Switcher panel** (`,a…`) — Claude & Gemini berbagi **satu** panel kanan
+  (lebar 0.4); buka salah satu otomatis menutup yang lain supaya tidak menumpuk.
+
+### Switcher panel AI — Claude/Gemini gantian
+
+| Mode | Key | Action | Description |
+|------|-----|--------|-------------|
+| n | `<leader>ac` | `AIShow('claude')` | Tampilkan Claude (tutup Gemini) |
+| n | `<leader>ag` | `AIShow('gemini')` | Tampilkan Gemini (tutup Claude) |
+| n | `<leader>ax` | `AIHide()` | Tutup kedua panel |
+| n | `<leader>aa` | pilih via `vim.ui.select` | Pilih panel mana yang ditampilkan |
+
+> `,ac`/`,ag` idempoten: menampilkan tanpa menutup kalau panelnya sudah terbuka.
+> Definisinya `_G.AIShow`/`_G.AIHide` di `init.lua`.
 
 ### Claude Code — prompting
 
