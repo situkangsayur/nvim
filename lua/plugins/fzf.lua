@@ -20,8 +20,10 @@ return {
         end
       end, {})
 
+      -- Ctrl+P = file finder (satu-satunya sumber mapping ini)
       map('n', '<C-p>', ':FZFSmart<CR>', { silent = true })
-      map('i', '<C-i>', '<Esc>:FZFSmart<CR>', { silent = true })
+      -- NB: <C-i> sengaja TIDAK dipetakan — di terminal <C-i> == <Tab>, jadi
+      -- memetakannya akan menabrak Tab completion coc.
       map('n', '<C-B>', ':Buffers<CR>')
       map('n', '<C-L>', ':Lines<CR>')
       map('n', '<Leader>fzl', ':Lines<CR>')

@@ -14,6 +14,10 @@ return {
       'coc-tsserver',      -- JavaScript / TypeScript
       'coc-html',
       'coc-css',
+      'coc-yaml',          -- YAML
+      'coc-xml',           -- XML (lemminx, butuh JDK)
+      'coc-toml',          -- TOML (taplo)
+      'coc-lua',           -- Lua (lua-language-server)
       'coc-pyright',       -- Python
       'coc-java',
       'coc-go',            -- Go (manages gopls)

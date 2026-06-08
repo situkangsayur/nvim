@@ -7,7 +7,10 @@ return {
       terminal = {
         provider = "snacks",
         split_side = "right",
-        split_width_percentage = 0.35,
+        -- 0.4 supaya sama persis dengan panel Gemini (preset right-fixed
+        -- mengunci lebar di 0.4 & tak bisa dioverride) -> keduanya berbagi
+        -- region kanan yang sama; lihat _G.AIShow di init.lua.
+        split_width_percentage = 0.4,
       },
     })
   end,

@@ -1,6 +1,6 @@
 {
   // "metals.javaHome": "/opt/jdk",
-  "metals.javaHome": "/usr/lib/jvm/java-17-openjdk-amd64",
+  "metals.javaHome": "/usr/lib/jvm/java-17-openjdk",
   "metals.enable" : false,
   "metals.statusBarEnabled" : true,
   "metals.superMethodLensesEnabled": true,
@@ -62,16 +62,16 @@
   "prettier.eslintIntegration": true,
   "prettier.stylelintIntegration": true,
   "prettier.statusItemText": "Prettier",
-  "java.jdt.ls.java.home": "/usr/lib/jvm/java-21-openjdk-amd64",
+  "java.jdt.ls.java.home": "/usr/lib/jvm/java-21-openjdk",
   "java.configuration.runtimes": [
         {
             "name": "JavaSE-21",
-            "path": "/usr/lib/jvm/java-21-openjdk-amd64"
+            "path": "/usr/lib/jvm/java-21-openjdk",
+            "default": true
         },
         {
             "name": "JavaSE-17",
-            "path": "/usr/lib/jvm/java-1.17.0-openjdk-amd64",
-            "default": true
+            "path": "/usr/lib/jvm/java-17-openjdk"
         }
   ],
   "java.completion.enabled": true,
@@ -141,5 +141,6 @@
       "sha256": "7d3a4ac4de1c32b59bc6a4eb8ecb8e612ccd0cf1ae1e99f66902da64df296172",
       "allowed": false
     }
-  ]
+  ],
+  "snippets.ultisnips.pythonPrompt": false
 }

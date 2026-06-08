@@ -244,3 +244,41 @@ vim.api.nvim_create_autocmd('FileChangedShellPost', {
     vim.notify('Buffer di-reload (diubah di disk)', vim.log.levels.INFO)
   end,
 })
+
+-- ── AI switcher: Claude & Gemini berbagi satu panel kanan (gantian) ──────────
+-- Keduanya panel kanan lebar 0.4. Buka salah satu -> yang lain ditutup, jadi
+-- tidak menumpuk / makan tempat. Izin/confirm & eksekusi command tetap diurus
+-- CLI masing-masing di dalam terminalnya.
+local function gemini_visible()
+  for _, w in ipairs(vim.api.nvim_list_wins()) do
+    if vim.bo[vim.api.nvim_win_get_buf(w)].filetype == 'terminalGemini' then
+      return true
+    end
+  end
+  return false
+end
+_G.AIShow = function(which)
+  if which == 'claude' then
+    pcall(vim.cmd, 'GeminiClose')
+    vim.cmd('ClaudeCodeOpen')
+  elseif which == 'gemini' then
+    pcall(vim.cmd, 'ClaudeCodeClose')
+    -- GeminiToggle = buka kalau tertutup, tapi juga tutup kalau sudah terbuka.
+    -- Jadi hanya toggle saat belum terlihat supaya selalu "show", tak menutup.
+    if not gemini_visible() then pcall(vim.cmd, 'GeminiToggle') end
+  end
+end
+_G.AIHide = function()
+  pcall(vim.cmd, 'ClaudeCodeClose')
+  pcall(vim.cmd, 'GeminiClose')
+end
+
+map('n', '<Leader>ac', function() _G.AIShow('claude') end, { desc = 'AI: Claude (tutup Gemini)' })
+map('n', '<Leader>ag', function() _G.AIShow('gemini') end, { desc = 'AI: Gemini (tutup Claude)' })
+map('n', '<Leader>ax', function() _G.AIHide() end,         { desc = 'AI: tutup panel' })
+map('n', '<Leader>aa', function()
+  vim.ui.select({ 'Claude', 'Gemini' }, { prompt = 'AI panel:' }, function(choice)
+    if choice == 'Claude' then _G.AIShow('claude')
+    elseif choice == 'Gemini' then _G.AIShow('gemini') end
+  end)
+end, { desc = 'AI: pilih panel' })
