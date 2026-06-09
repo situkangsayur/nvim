@@ -59,7 +59,17 @@ return {
       require('image').setup({
         backend = 'kitty',
         processor = 'magick_cli',
-        integrations = {}, -- molten yang panggil, bukan auto-render markdown
+        -- Molten yang panggil image.nvim langsung (lewat molten_image_provider),
+        -- jadi auto-render dokumen harus dimatikan eksplisit. `integrations = {}`
+        -- TIDAK cukup: image.nvim deep-merge ke default (markdown dll enabled=true),
+        -- dan auto-render markdown bikin crash treesitter di nvim 0.12.x.
+        integrations = {
+          markdown  = { enabled = false },
+          asciidoc  = { enabled = false },
+          typst     = { enabled = false },
+          neorg     = { enabled = false },
+          syslang   = { enabled = false },
+        },
         max_width = 100,
         max_height = 12,
         max_height_window_percentage = math.huge,
