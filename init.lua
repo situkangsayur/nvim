@@ -25,7 +25,14 @@ require("lazy").setup({
   spec = {
     -- import all files from lua/plugins
     { import = "plugins" },
-  }
+  },
+  -- Matikan luarocks. Satu-satunya plugin yang punya rockspec di sini adalah
+  -- image.nvim, dan kita sudah pakai `processor = 'magick_cli'` (ImageMagick CLI)
+  -- sehingga rock `magick` tidak diperlukan. Kalau dibiarkan, lazy menarik
+  -- hererocks untuk membangun Lua 5.1, gagal di mesin tanpa toolchain luarocks,
+  -- lalu mengulang tiap startup sampai error "Too many rounds of missing plugins"
+  -- dan sebagian plugin batal dimuat.
+  rocks = { enabled = false, hererocks = false },
 })
 
 -- basic settings
